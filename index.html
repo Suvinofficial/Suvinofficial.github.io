@@ -114,6 +114,33 @@
     .stats{grid-template-columns:repeat(2,1fr)}
     .skills{grid-template-columns:1fr}
   }
+
+  /* ---------- Chat assistant ---------- */
+  .cb-fab{position:fixed;right:22px;bottom:22px;z-index:50;display:flex;align-items:center;gap:10px;background:var(--accent);color:#06221e;border:0;border-radius:999px;padding:14px 20px;font:600 .95rem Inter,sans-serif;cursor:pointer;box-shadow:0 12px 30px rgba(45,212,191,.35)}
+  .cb-fab svg{width:20px;height:20px}
+  .cb-fab:hover{transform:translateY(-2px)}
+  .cb-panel{position:fixed;right:22px;bottom:88px;z-index:51;width:370px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 120px);display:none;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .cb-panel.open{display:flex}
+  .cb-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--card);border-bottom:1px solid var(--line)}
+  .cb-head img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+  .cb-head b{display:block;font-size:.95rem}
+  .cb-head small{color:var(--accent);font-size:.78rem}
+  .cb-close{margin-left:auto;background:none;border:0;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1}
+  .cb-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .cb-msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:.9rem;line-height:1.5;white-space:pre-line}
+  .cb-msg a{color:var(--accent)}
+  .cb-bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .cb-user{align-self:flex-end;background:var(--accent);color:#06221e;border-bottom-right-radius:4px}
+  .cb-typing{align-self:flex-start;color:var(--muted);font-size:.85rem;padding:4px 6px}
+  .cb-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+  .cb-chip{background:#0f1a30;border:1px solid rgba(45,212,191,.4);color:var(--text);border-radius:999px;padding:6px 12px;font:500 .8rem Inter,sans-serif;cursor:pointer}
+  .cb-chip:hover{background:rgba(45,212,191,.12)}
+  .cb-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--card)}
+  .cb-form input{flex:1;background:#0f1a30;border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--text);font:.9rem Inter,sans-serif;outline:none}
+  .cb-form input:focus{border-color:var(--accent)}
+  .cb-form button{background:var(--accent);border:0;border-radius:10px;padding:0 14px;color:#06221e;font-weight:700;cursor:pointer}
+  .cb-note{font-size:.7rem;color:var(--muted);text-align:center;padding:0 12px 8px;background:var(--card)}
+  @media (max-width:520px){.cb-panel{right:8px;left:8px;width:auto;bottom:80px;height:calc(100vh - 110px)}.cb-fab span{display:none}.cb-fab{padding:14px}}
 </style>
 </head>
 <body>
@@ -325,6 +352,178 @@
 </section>
 
 <footer>© 2026 Suvin V S · Senior System Administrator</footer>
+
+
+<!-- ===================== Chat assistant ===================== -->
+<button class="cb-fab" id="cbFab" aria-label="Chat with Suvin" aria-expanded="false" aria-controls="cbPanel">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span>Ask me anything</span>
+</button>
+<div class="cb-panel" id="cbPanel" role="dialog" aria-label="Chat with Suvin">
+  <div class="cb-head">
+    <img src="photo.jpg" alt="">
+    <div><b>Chat with Suvin</b><small>● Instant answers about my profile</small></div>
+    <button class="cb-close" id="cbClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="cb-body" id="cbBody" aria-live="polite"></div>
+  <div class="cb-chips" id="cbChips"></div>
+  <form class="cb-form" id="cbForm" autocomplete="off">
+    <input id="cbInput" type="text" placeholder="Type a question…" aria-label="Your question" maxlength="300">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+  <div class="cb-note">Automated answers. For anything else, email suvinoffice@gmail.com</div>
+</div>
+
+<script>
+(function () {
+  var EMAIL = 'suvinoffice@gmail.com';
+  var LINKEDIN = 'https://www.linkedin.com/in/suvin-office-780102297';
+  var mail = '<a href="mailto:' + EMAIL + '?subject=Job%20opportunity%20for%20Suvin%20V%20S">' + EMAIL + '</a>';
+  var li = '<a href="' + LINKEDIN + '" target="_blank" rel="noopener">LinkedIn</a>';
+  var cv = '<a href="Suvin_VS_CV.pdf" target="_blank" rel="noopener">Download my CV (PDF)</a>';
+
+  // Each topic: keywords to match, the answer, and suggested follow-ups.
+  var KB = [
+    { id: 'about', label: 'Who are you?',
+      keys: ['who', 'about', 'yourself', 'introduce', 'summary', 'profile', 'background', 'tell me'],
+      a: "I'm Suvin V S, a Senior System Administrator and Infrastructure & Network Specialist with 12+ years in IT.\n\nI've kept banking, government and enterprise IT running: Windows Server, Active Directory, Cisco networks, Microsoft 365 and hands-on hardware support.",
+      next: ['experience', 'skills', 'available'] },
+    { id: 'experience', label: 'Work experience',
+      keys: ['experience', 'work', 'job', 'career', 'company', 'companies', 'employer', 'worked', 'history', 'years', 'infolink', 'sbi', 'bank', 'cdit', 'c-dit', 'smartipz', 'zeekoi'],
+      a: "12+ years, most recent first:\n\n• Infolink Technologies (at State Bank of India): Senior Infrastructure Lead / System Administrator, Jan 2026 – Nov 2026. IT for 44 SBI branches.\n• Smartipz Business Solutions: Senior Systems & ERP Deployment Specialist, May 2025 – Jan 2026\n• C-DIT (Kerala Motor Vehicles Dept.): Assistant System Administrator, Dec 2021 – Apr 2025\n• Smartipz Business Solutions: System & Network Administrator, Oct 2018 – Dec 2021\n• Zeekoi Technologies: Network Administrator, May 2014 – Oct 2018",
+      next: ['skills', 'current', 'cv'] },
+    { id: 'current', label: 'Current role',
+      keys: ['current', 'present', 'now', 'recent', 'latest', 'currently'],
+      a: "Until November 2026 I was Senior Infrastructure Lead / System Administrator with Infolink Technologies, deputed at State Bank of India, Trivandrum.\n\nI handled IT for 44 SBI branches: Active Directory, Group Policy, DNS, endpoint deployment and patching, remote support, system recovery, and printer/scanner and hardware servicing.",
+      next: ['available', 'skills', 'contact'] },
+    { id: 'skills', label: 'Technical skills',
+      keys: ['skill', 'skills', 'technical', 'technology', 'tools', 'know', 'expertise', 'windows', 'server', 'active directory', 'ad ', 'gpo', 'dns', 'dhcp', 'cisco', 'network', 'networking', 'm365', 'office 365', 'microsoft 365', 'sql', 'backup', 'printer', 'hardware', 'firewall', 'vpn', 'lan', 'wan'],
+      a: "Main skills:\n\n• Systems: Windows Server 2008 R2–2022, Active Directory, Group Policy, DNS, DHCP, patch management\n• Networking: Cisco routing & switching, LAN/WAN, firewall and port security, VPN\n• Cloud & data: Microsoft 365 admin, SQL Server backup & restore, AWS (learning)\n• End-user & hardware: desktops, laptops, printers, scanners, OS deployment, backup & restore\n• Service: ticketing & SLAs, documentation, asset inventory, vendor coordination",
+      next: ['certs', 'roles', 'experience'] },
+    { id: 'roles', label: 'Roles you want',
+      keys: ['role', 'roles', 'position', 'looking', 'interested', 'target', 'suitable', 'apply', 'vacancy', 'opening', 'fit'],
+      a: "I'm looking for roles such as:\n\n• System Administrator / IT Administrator\n• IT Support Engineer (L1/L2)\n• Network Administrator\n• IT Infrastructure Engineer\n\nI'm especially interested in opportunities in the UAE (Abu Dhabi / Dubai).",
+      next: ['available', 'salary', 'contact'] },
+    { id: 'available', label: 'Availability',
+      keys: ['available', 'availability', 'join', 'joining', 'start', 'notice', 'when', 'immediate', 'interview', 'uae', 'abu dhabi', 'dubai', 'location', 'where', 'based', 'relocate', 'visa'],
+      a: "I'm available to join immediately, with no notice period.\n\nI'll be in Abu Dhabi from late November 2026 and can attend interviews in person anywhere in the UAE, or by video call any time.\n\nFor visa details, please email me at " + 'EMAIL_LINK' + ".",
+      next: ['contact', 'salary', 'cv'] },
+    { id: 'salary', label: 'Salary expectation',
+      keys: ['salary', 'package', 'pay', 'ctc', 'expected', 'expectation', 'compensation', 'aed', 'money'],
+      a: "I'm open to discussing salary based on the role, responsibilities and full package (housing, transport, visa and medical).\n\nPlease email me at " + 'EMAIL_LINK' + " with the role details and I'll reply promptly.",
+      next: ['contact', 'available'] },
+    { id: 'certs', label: 'Certifications',
+      keys: ['cert', 'certification', 'certifications', 'certified', 'aws', 'ccna', 'comptia', 'a+', 'course', 'learning', 'training', 'powershell', 'hyper-v'],
+      a: "Certifications in progress:\n\n• AWS Certification\n• CompTIA A+\n\nAlso studying: CCNA, PowerShell, Hyper-V, Cisco IOS and macOS. I'm also building hands-on labs (Active Directory, Cisco networking and AWS) to show practical skills.",
+      next: ['education', 'skills'] },
+    { id: 'education', label: 'Education',
+      keys: ['education', 'degree', 'qualification', 'btech', 'b.tech', 'diploma', 'college', 'study', 'studied', 'attested', 'graduate'],
+      a: "• B.Tech, Electronics & Communication Engineering. Amrita College of Engineering and Technology, Nagercoil (2021). The degree certificate is attested.\n• Diploma, Electronics & Communication Engineering. Sun College of Engineering and Technology, Nagercoil (2011).",
+      next: ['certs', 'experience'] },
+    { id: 'languages', label: 'Languages',
+      keys: ['language', 'languages', 'speak', 'english', 'hindi', 'malayalam', 'tamil', 'arabic'],
+      a: "I read, write and speak four languages: Malayalam (native), English, Hindi and Tamil.",
+      next: ['about', 'contact'] },
+    { id: 'cv', label: 'Download CV',
+      keys: ['cv', 'resume', 'résumé', 'download', 'pdf'],
+      a: "Here you go: " + 'CV_LINK' + "\n\nIt's 2 pages and covers all my experience, skills and education.",
+      next: ['contact', 'available'] },
+    { id: 'contact', label: 'Contact Suvin',
+      keys: ['contact', 'email', 'mail', 'reach', 'phone', 'call', 'number', 'whatsapp', 'linkedin', 'message', 'talk', 'hire', 'connect'],
+      a: "The best way to reach me:\n\n📧 " + 'EMAIL_LINK' + "\n💼 " + 'LI_LINK' + "\n\nPlease include the role and company, and I'll reply as soon as possible. My UAE mobile number will be added here once I arrive in Abu Dhabi.",
+      next: ['cv', 'available'] },
+    { id: 'thanks', label: 'Thanks',
+      keys: ['thank', 'thanks', 'great', 'ok', 'okay', 'cool', 'nice', 'bye', 'goodbye'],
+      a: "Thank you for visiting! If you'd like to talk about an opportunity, email me at " + 'EMAIL_LINK' + ". Have a great day.",
+      next: ['cv'] },
+    { id: 'hello', label: 'Hello',
+      keys: ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'salam', 'namaste'],
+      a: "Hello! 👋 Thanks for stopping by. What would you like to know about my experience?",
+      next: ['about', 'experience', 'available'] }
+  ];
+
+  function fill(t) {
+    return t.replace(/EMAIL_LINK/g, mail).replace(/LI_LINK/g, li).replace(/CV_LINK/g, cv);
+  }
+  function byId(id) { for (var i = 0; i < KB.length; i++) if (KB[i].id === id) return KB[i]; return null; }
+  function esc(s) { return s.replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
+
+  function match(text) {
+    var q = ' ' + text.toLowerCase().replace(/[^a-z0-9+.\- ]/g, ' ') + ' ';
+    var best = null, bestScore = 0;
+    KB.forEach(function (k) {
+      var score = 0;
+      k.keys.forEach(function (w) {
+        var needle = w.trim();
+        if (needle.length <= 3) { if (q.indexOf(' ' + needle + ' ') > -1) score += 2; }
+        else if (q.indexOf(needle) > -1) score += needle.indexOf(' ') > -1 ? 3 : 2;
+      });
+      // small-talk topics only win when nothing else matches
+      if ((k.id === 'hello' || k.id === 'thanks') && score) score = 1;
+      if (score > bestScore) { bestScore = score; best = k; }
+    });
+    return best;
+  }
+
+  var fab = document.getElementById('cbFab'), panel = document.getElementById('cbPanel'),
+      body = document.getElementById('cbBody'), chips = document.getElementById('cbChips'),
+      form = document.getElementById('cbForm'), input = document.getElementById('cbInput'),
+      closeBtn = document.getElementById('cbClose'), started = false;
+
+  function add(html, who) {
+    var d = document.createElement('div');
+    d.className = 'cb-msg ' + (who === 'user' ? 'cb-user' : 'cb-bot');
+    d.innerHTML = html;
+    body.appendChild(d);
+    // show the start of a long answer, not its end
+    body.scrollTop = who === 'user' ? body.scrollHeight : Math.max(0, d.offsetTop - body.offsetTop - 8);
+  }
+  function setChips(ids) {
+    chips.innerHTML = '';
+    ids.forEach(function (id) {
+      var k = byId(id); if (!k) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cb-chip'; b.textContent = k.label;
+      b.onclick = function () { ask(k.label, k); };
+      chips.appendChild(b);
+    });
+  }
+  function reply(html, nextIds) {
+    var t = document.createElement('div');
+    t.className = 'cb-typing'; t.textContent = 'Typing…';
+    body.appendChild(t); body.scrollTop = body.scrollHeight;
+    chips.innerHTML = '';
+    setTimeout(function () { t.remove(); add(html, 'bot'); setChips(nextIds); }, 550);
+  }
+  function ask(text, topic) {
+    add(esc(text), 'user');
+    var k = topic || match(text);
+    if (k) reply(fill(k.a), k.next);
+    else reply("Sorry, I don't have an answer for that here. 🙂\n\nPlease email me at " + mail +
+               " and I'll get back to you. You can also pick a topic below.",
+               ['about', 'skills', 'available', 'contact']);
+  }
+  function open() {
+    panel.classList.add('open'); fab.setAttribute('aria-expanded', 'true');
+    if (!started) {
+      started = true;
+      add("Hi! 👋 Thanks for visiting. Ask me about my experience, skills or availability and I'll answer straight away.\n\nPick a topic or type your question.", 'bot');
+      setChips(['about', 'experience', 'skills', 'available', 'salary', 'cv', 'contact']);
+    }
+    setTimeout(function () { input.focus(); }, 50);
+  }
+  function close() { panel.classList.remove('open'); fab.setAttribute('aria-expanded', 'false'); fab.focus(); }
+
+  fab.addEventListener('click', function () { panel.classList.contains('open') ? close() : open(); });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) close(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim(); if (!v) return;
+    input.value = ''; ask(v);
+  });
+})();
+</script>
 
 </body>
 </html>
