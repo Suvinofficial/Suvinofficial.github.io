@@ -126,7 +126,7 @@
   /* ================= "Fix it" interactive scenes ================= */
   #fixit{border-top:1px solid var(--line)}
   .fi-intro{color:var(--muted);margin:-18px 0 26px;max-width:640px}
-  .fi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .fi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
   .fi-tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;color:var(--text);font:600 .9rem Inter,sans-serif;transition:transform .2s,border-color .2s}
   .fi-tile:hover,.fi-tile:focus-visible{transform:translateY(-3px);border-color:var(--accent);outline:none}
   .fi-tile small{color:var(--muted);font-weight:500;font-size:.74rem;text-align:center;line-height:1.3}
@@ -139,11 +139,11 @@
   @keyframes fiFlick{from{transform:scale(1) rotate(-6deg)}to{transform:scale(1.15) rotate(6deg)}}
 
   /* floating messenger-style dock */
-  .fi-dock{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:12px;padding:12px 8px;background:rgba(17,26,46,.88);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .fi-dock{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:6px;padding:10px 8px;max-height:calc(100vh - 90px);overflow-y:auto;scrollbar-width:none;background:rgba(17,26,46,.88);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
   .fi-dock .fi-tile{background:none;border:0;padding:0;gap:4px;font-size:.66rem;font-weight:600}
   .fi-dock .fi-tile:hover{transform:scale(1.08)}
-  .fi-dock .fi-ico{width:46px;height:46px}
-  .fi-dock .fi-ico svg{width:24px;height:24px}
+  .fi-dock .fi-ico{width:40px;height:40px}
+  .fi-dock .fi-ico svg{width:21px;height:21px}
   .fi-dock .fi-badge{width:18px;height:18px;font-size:11px;line-height:18px;box-shadow:0 0 0 2px #111a2e}
   .fi-dock .fi-flame{font-size:12px}
   .fi-dock small{display:none}
@@ -255,6 +255,34 @@
   .sc.st5 .sec-shield{fill:#0f766e}
   .sc .sec-ok{opacity:0}.sc.st5 .sec-ok{opacity:1}.sc.st5 .sec-warn{opacity:0}
 
+  /* Slow PC */
+  .sc .sp-win{opacity:0;transform:translateY(24px)}.sc.st2 .sp-win{opacity:1;transform:none}
+  .sc .sp-bar{transform-origin:left center}.sc.st3 .sp-disk{fill:#ef4444}
+  .sc.st4 .sp-bar{transform:scaleX(.2);fill:#22c55e}
+  .sc .sp-lo{opacity:0}.sc.st4 .sp-lo{opacity:1}.sc.st4 .sp-hi{opacity:0}
+  .sc .sp-fast{opacity:0}.sc.st5 .sp-fast{opacity:1}.sc.st5 .sp-slow{opacity:0}.sc.st5 .sp-scr{fill:#0f766e}
+  /* Blue screen */
+  .sc .bs-win{opacity:0;transform:translateY(24px)}.sc.st2 .bs-win{opacity:1;transform:none}
+  .sc.st3 .bs-row{fill:rgba(239,68,68,.25)}
+  .sc .bs-btn{opacity:0}.sc.st3 .bs-btn{opacity:1}.sc.st4 .bs-btn rect{fill:#0f766e}
+  .sc.st4 .bs-row{fill:rgba(45,212,191,.2)}
+  .sc .bs-fixed{opacity:0}.sc.st4 .bs-fixed{opacity:1}.sc.st4 .bs-bad{opacity:0}
+  .sc .bs-ok{opacity:0}.sc.st5 .bs-ok{opacity:1}.sc.st5 .bs-err{opacity:0}.sc.st5 .bs-scr{fill:#0f766e}
+  /* Outlook */
+  .sc .ol-win{opacity:0;transform:translateX(24px)}.sc.st2 .ol-win{opacity:1;transform:none}
+  .sc.st3 .ol-row{fill:rgba(239,68,68,.25)}
+  .sc .ol-btn{opacity:0}.sc.st3 .ol-btn{opacity:1}.sc.st4 .ol-btn rect{fill:#0f766e}
+  .sc.st4 .ol-row{fill:rgba(45,212,191,.2)}
+  .sc .ol-fixed{opacity:0}.sc.st4 .ol-fixed{opacity:1}.sc.st4 .ol-bad{opacity:0}
+  .sc .ol-new{opacity:0;transform:translateY(-20px)}.sc.st5 .ol-new{opacity:1;transform:none}
+  .sc .ol-conn{opacity:0}.sc.st5 .ol-conn{opacity:1}.sc.st5 .ol-disc{opacity:0}
+  /* Display */
+  .sc .dp-menu{opacity:0}.sc.st2 .dp-menu{opacity:1}.sc.st5 .dp-menu{opacity:0}
+  .sc .dp-in2{opacity:0}.sc.st4 .dp-in2{opacity:1}.sc.st4 .dp-in1{opacity:0}
+  .sc.st3 .dp-bad{stroke:#ef4444}
+  .sc .dp-new{opacity:0;transform:translateY(-20px)}.sc.st4 .dp-new{opacity:1;transform:none}
+  .sc.st5 .dp-cable{stroke:#2dd4bf}
+  .sc .dp-ok{opacity:0}.sc.st5 .dp-ok{opacity:1}.sc.st5 .dp-nosig{opacity:0}.sc.st5 .dp-scr{fill:#0f766e}
   @media (max-width:980px){.fi-grid{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:1180px){
     .fi-dock{top:auto;bottom:14px;left:10px;right:auto;max-width:calc(100vw - 96px);transform:none;flex-direction:row;overflow-x:auto;padding:8px 10px;border-radius:18px;gap:14px}
@@ -414,7 +442,7 @@
   <div class="wrap">
     <div class="eyebrow">See me at work</div>
     <h2>Tap a problem. Watch it get fixed.</h2>
-    <p class="fi-intro">Six everyday IT problems from my 12+ years in banking, government and business IT. Each one plays out step by step: problem, diagnosis, fix and check.</p>
+    <p class="fi-intro">Ten everyday IT and desktop support problems from my 12+ years in banking, government and business IT. Each one plays out step by step: problem, diagnosis, fix and check.</p>
     <div class="fi-grid" id="fiGrid"></div>
   </div>
 </section>
@@ -577,7 +605,11 @@
     network:  '<svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg>',
     ad:       '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><rect x="15" y="10" width="7" height="6" rx="1"/><path d="M16.5 10V8.5a2 2 0 0 1 4 0V10"/></svg>',
     backup:   '<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3"/><path d="M17 16v5M14.5 18.5 17 21l2.5-2.5"/></svg>',
-    security: '<svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5z"/><path d="M12 8v5M12 16h0"/></svg>'
+    security: '<svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5z"/><path d="M12 8v5M12 16h0"/></svg>',
+    slow:     '<svg viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/><path d="M8 14h.01M12 10h.01M16 14h.01"/></svg>',
+    bsod:     '<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8h.01M15 8h.01M9 13c1.5-1.5 4.5-1.5 6 0"/></svg>',
+    mail:     '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>',
+    display:  '<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 7l6 6M15 7l-6 6"/></svg>'
   };
 
   // shared bits
@@ -587,6 +619,128 @@
   var TAG = function (x, y, t) { return '<g class="tag"><rect x="' + (x - 58) + '" y="' + (y - 14) + '" width="116" height="24" rx="12" fill="#ef4444"/><text x="' + x + '" y="' + (y + 3) + '" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">' + t + '</text></g>'; };
 
   var SCENES = {
+
+    slowpc: {
+      steps: ['Problem', 'Check', 'Diagnose', 'Fix', 'Verified'],
+      label: 'Slow PC', title: 'PC very slow', icon: ICON.slow,
+      svg:
+        '<rect x="16" y="44" width="200" height="130" rx="10" fill="#1e293b" stroke="#334155" stroke-width="3"/>' +
+        '<rect class="sp-scr" x="30" y="58" width="172" height="102" rx="4" fill="#0b1220"/>' +
+        '<g class="sp-slow"><text x="116" y="104" font-size="26" text-anchor="middle">⏳</text><text x="116" y="128" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">Not responding…</text></g>' +
+        '<g class="sp-fast"><text x="116" y="102" fill="#e6ecf5" font-size="15" font-weight="700" text-anchor="middle">Ready in 20 s</text><text x="116" y="122" fill="#99f6e4" font-size="11" text-anchor="middle">Apps open instantly</text></g>' +
+        '<rect x="102" y="174" width="28" height="16" fill="#334155"/><rect x="78" y="190" width="76" height="8" rx="3" fill="#334155"/>' +
+        '<g class="sp-win"><rect x="236" y="26" width="228" height="200" rx="10" fill="#111827" stroke="#334155" stroke-width="3"/>' +
+        '<rect x="236" y="26" width="228" height="28" rx="10" fill="#1e3a5f"/><text x="248" y="45" fill="#e6ecf5" font-size="11" font-weight="700">Task Manager · Performance</text>' +
+        '<text x="250" y="80" fill="#94a3b8" font-size="11">CPU</text><rect x="304" y="70" width="120" height="12" rx="3" fill="#1e293b"/><rect class="sp-bar" x="304" y="70" width="114" height="12" rx="3" fill="#f59e0b"/>' +
+        '<text class="sp-hi" x="456" y="80" fill="#fbbf24" font-size="10" text-anchor="end">95%</text><text class="sp-lo" x="456" y="80" fill="#4ade80" font-size="10" text-anchor="end">12%</text>' +
+        '<text x="250" y="110" fill="#94a3b8" font-size="11">Memory</text><rect x="304" y="100" width="120" height="12" rx="3" fill="#1e293b"/><rect class="sp-bar" x="304" y="100" width="108" height="12" rx="3" fill="#f59e0b"/>' +
+        '<text class="sp-hi" x="456" y="110" fill="#fbbf24" font-size="10" text-anchor="end">90%</text><text class="sp-lo" x="456" y="110" fill="#4ade80" font-size="10" text-anchor="end">35%</text>' +
+        '<text x="250" y="140" fill="#94a3b8" font-size="11">Disk</text><rect x="304" y="130" width="120" height="12" rx="3" fill="#1e293b"/><rect class="sp-bar sp-disk" x="304" y="130" width="120" height="12" rx="3" fill="#f59e0b"/>' +
+        '<text class="sp-hi" x="456" y="140" fill="#fbbf24" font-size="10" text-anchor="end">100%</text><text class="sp-lo" x="456" y="140" fill="#4ade80" font-size="10" text-anchor="end">4%</text>' +
+        '<text class="sp-hi" x="250" y="176" fill="#e6ecf5" font-size="11">Startup apps: 14 · Drive health: ⚠</text>' +
+        '<text class="sp-lo" x="250" y="176" fill="#4ade80" font-size="11">Startup apps: 4 · New SSD: OK</text>' +
+        '<text x="250" y="204" fill="#64748b" font-size="10">Boot time</text><text class="sp-hi" x="456" y="204" fill="#f87171" font-size="11" font-weight="700" text-anchor="end">9 min</text><text class="sp-lo" x="456" y="204" fill="#4ade80" font-size="11" font-weight="700" text-anchor="end">20 s</text></g>' +
+        LENS(364, 132) + TAG(364, 160, 'DISK AT 100%') +
+        ALARM(206, 44) + CHECK(206, 44),
+      caps: [
+        '<b>Problem:</b> the user\'s PC takes minutes to start and freezes when opening files.',
+        '<b>Check:</b> open Task Manager and look at CPU, memory, disk and startup apps.',
+        '<b>Diagnose:</b> the <b>disk is stuck at 100%</b>: 14 startup apps and an old drive with a health warning.',
+        '<b>Fix:</b> disable unneeded startup apps, clear temp files, and replace the failing drive with an SSD, restoring the user\'s data.',
+        '<b>Verified:</b> Windows starts in about 20 seconds and apps open instantly. ✓'
+      ],
+      exp: '<b>Desktop and laptop troubleshooting</b>, hardware replacement, OS reinstallation and data backup &amp; restore for SBI branch users, C-DIT (Kerala MVD) offices and Smartipz client sites.'
+    },
+
+    bsod: {
+      steps: ['Problem', 'Investigate', 'Diagnose', 'Fix', 'Verified'],
+      label: 'Blue screen', title: 'Keeps crashing (BSOD)', icon: ICON.bsod,
+      svg:
+        '<rect x="16" y="36" width="230" height="146" rx="10" fill="#1e293b" stroke="#334155" stroke-width="3"/>' +
+        '<rect class="bs-scr" x="30" y="50" width="202" height="118" rx="4" fill="#1d4ed8"/>' +
+        '<g class="bs-err"><text x="48" y="92" fill="#fff" font-size="34">:(</text><text x="48" y="118" fill="#fff" font-size="11">Your PC ran into a problem</text><text x="48" y="136" fill="#bfdbfe" font-size="8">Stop code: DRIVER_IRQL_NOT_LESS…</text><text x="48" y="150" fill="#bfdbfe" font-size="8">What failed: netwlan.sys</text></g>' +
+        '<g class="bs-ok"><text x="131" y="106" fill="#e6ecf5" font-size="15" font-weight="700" text-anchor="middle">Windows ready</text><text x="131" y="126" fill="#99f6e4" font-size="11" text-anchor="middle">No crashes since the fix</text></g>' +
+        '<rect x="117" y="182" width="28" height="16" fill="#334155"/><rect x="93" y="198" width="76" height="8" rx="3" fill="#334155"/>' +
+        '<g class="bs-win"><rect x="262" y="30" width="202" height="196" rx="10" fill="#111827" stroke="#334155" stroke-width="3"/>' +
+        '<rect x="262" y="30" width="202" height="28" rx="10" fill="#1e3a5f"/><text x="274" y="49" fill="#e6ecf5" font-size="11" font-weight="700">Event Viewer · System</text>' +
+        '<text x="274" y="80" fill="#f87171" font-size="10">Critical</text><text x="324" y="80" fill="#94a3b8" font-size="10">Kernel-Power 41</text>' +
+        '<rect class="bs-row" x="268" y="90" width="190" height="24" rx="5" fill="rgba(0,0,0,0)"/>' +
+        '<text class="bs-bad" x="274" y="106" fill="#f87171" font-size="10" font-weight="700">Error</text><text class="bs-bad" x="324" y="106" fill="#e6ecf5" font-size="10" font-weight="700">BugCheck · netwlan.sys</text>' +
+        '<text class="bs-fixed" x="274" y="106" fill="#4ade80" font-size="10" font-weight="700">Fixed</text><text class="bs-fixed" x="324" y="106" fill="#e6ecf5" font-size="10" font-weight="700">Wi-Fi driver rolled back</text>' +
+        '<text x="274" y="132" fill="#94a3b8" font-size="10">Info</text><text x="324" y="132" fill="#94a3b8" font-size="10">Update installed Wi-Fi driver</text>' +
+        '<text x="274" y="156" fill="#f87171" font-size="10">Critical</text><text x="324" y="156" fill="#94a3b8" font-size="10">Kernel-Power 41</text>' +
+        '<g class="bs-btn"><rect x="300" y="178" width="126" height="30" rx="7" fill="#2563eb"/><text x="363" y="198" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">Roll back driver</text></g></g>' +
+        TAG(363, 76, 'BAD DRIVER') +
+        ALARM(236, 38) + CHECK(236, 38),
+      caps: [
+        '<b>Problem:</b> the user\'s PC crashes to a <b>blue screen</b> several times a day.',
+        '<b>Investigate:</b> check Event Viewer, Reliability Monitor and the crash details.',
+        '<b>Diagnose:</b> every crash points to the <b>Wi-Fi driver</b> installed by a recent update.',
+        '<b>Fix:</b> roll back the driver and stop that version reinstalling automatically.',
+        '<b>Verified:</b> the PC runs without crashing and Reliability Monitor stays clean. ✓'
+      ],
+      exp: '<b>Windows endpoint deployment, driver and application setup, patching and troubleshooting</b> for branch PCs at SBI (Infolink) and client systems at Smartipz.'
+    },
+
+    outlook: {
+      steps: ['Problem', 'Check', 'Diagnose', 'Fix', 'Verified'],
+      label: 'Email', title: 'Outlook not syncing', icon: ICON.mail,
+      svg:
+        '<rect x="16" y="26" width="300" height="200" rx="10" fill="#111827" stroke="#334155" stroke-width="3"/>' +
+        '<rect x="16" y="26" width="300" height="28" rx="10" fill="#1d4ed8"/><text x="28" y="45" fill="#fff" font-size="11" font-weight="700">Outlook · Inbox</text>' +
+        '<g class="ol-new"><rect x="28" y="62" width="276" height="26" rx="5" fill="#1e3a5f"/><circle cx="42" cy="75" r="5" fill="#60a5fa"/><text x="54" y="79" fill="#e6ecf5" font-size="10" font-weight="700">Branch manager · Today\'s report</text>' +
+        '<rect x="28" y="92" width="276" height="26" rx="5" fill="#1e3a5f"/><circle cx="42" cy="105" r="5" fill="#60a5fa"/><text x="54" y="109" fill="#e6ecf5" font-size="10" font-weight="700">IT Helpdesk · Ticket #4521 updated</text></g>' +
+        '<g class="ol-old"><rect x="28" y="124" width="276" height="24" rx="5" fill="#1e293b"/><text x="54" y="140" fill="#94a3b8" font-size="10">Yesterday · Weekly schedule</text>' +
+        '<rect x="28" y="152" width="276" height="24" rx="5" fill="#1e293b"/><text x="54" y="168" fill="#94a3b8" font-size="10">Yesterday · Audit checklist</text></g>' +
+        '<rect x="16" y="196" width="300" height="30" rx="0" fill="#0b1220"/>' +
+        '<g class="ol-disc"><text x="28" y="215" fill="#f87171" font-size="11" font-weight="700">● Disconnected · Trying to connect…</text></g>' +
+        '<g class="ol-conn"><text x="28" y="215" fill="#4ade80" font-size="11" font-weight="700">● Connected to Microsoft 365</text></g>' +
+        '<g class="ol-win"><rect x="332" y="40" width="132" height="176" rx="10" fill="#111827" stroke="#334155" stroke-width="3"/>' +
+        '<text x="398" y="62" fill="#e6ecf5" font-size="11" font-weight="700" text-anchor="middle">Mail setup</text>' +
+        '<text x="344" y="88" fill="#94a3b8" font-size="10">Webmail:</text><text x="452" y="88" fill="#4ade80" font-size="10" text-anchor="end">works</text>' +
+        '<rect class="ol-row" x="338" y="98" width="120" height="24" rx="5" fill="rgba(0,0,0,0)"/>' +
+        '<text class="ol-bad" x="344" y="114" fill="#f87171" font-size="10" font-weight="700">Profile: corrupted</text>' +
+        '<text class="ol-fixed" x="344" y="114" fill="#4ade80" font-size="10" font-weight="700">New profile: OK</text>' +
+        '<g class="ol-btn"><rect x="346" y="168" width="104" height="30" rx="7" fill="#2563eb"/><text x="398" y="188" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">New profile</text></g></g>' +
+        TAG(398, 146, 'BAD PROFILE') +
+        ALARM(306, 38) + CHECK(306, 38),
+      caps: [
+        '<b>Problem:</b> Outlook says <b>"Disconnected"</b> and no new email has arrived since morning.',
+        '<b>Check:</b> test webmail and the network, then open Mail setup in Control Panel.',
+        '<b>Diagnose:</b> webmail works, so the account is fine: the <b>local Outlook profile is corrupted</b>.',
+        '<b>Fix:</b> create a new mail profile and let the mailbox re-sync from Microsoft 365.',
+        '<b>Verified:</b> Outlook shows "Connected" and the missing emails arrive. ✓'
+      ],
+      exp: '<b>Microsoft 365 / Office 365 administration</b>, provisioning and remote support for Smartipz business clients, and Microsoft 365 and Office support at C-DIT (Kerala MVD).'
+    },
+
+    display: {
+      steps: ['Problem', 'Check', 'Diagnose', 'Fix', 'Verified'],
+      label: 'Display', title: 'Monitor: No signal', icon: ICON.display,
+      svg:
+        '<rect x="24" y="60" width="78" height="150" rx="8" fill="#1e293b" stroke="#334155" stroke-width="3"/>' +
+        '<rect x="38" y="78" width="50" height="8" rx="2" fill="#334155"/><circle cx="63" cy="110" r="6" fill="#22c55e"/>' +
+        '<rect x="80" y="170" width="16" height="12" rx="2" fill="#0b1220" stroke="#64748b"/>' +
+        '<rect x="186" y="24" width="276" height="166" rx="10" fill="#1e293b" stroke="#334155" stroke-width="3"/>' +
+        '<rect class="dp-scr" x="200" y="38" width="248" height="138" rx="4" fill="#0b1220"/>' +
+        '<g class="dp-nosig"><rect x="262" y="88" width="124" height="38" rx="6" fill="#111827" stroke="#475569"/><text x="324" y="112" fill="#e6ecf5" font-size="13" font-weight="700" text-anchor="middle">No signal</text></g>' +
+        '<g class="dp-ok"><text x="324" y="102" fill="#e6ecf5" font-size="15" font-weight="700" text-anchor="middle">Desktop is back</text><text x="324" y="122" fill="#99f6e4" font-size="11" text-anchor="middle">1920 × 1080 · HDMI 1</text></g>' +
+        '<g class="dp-menu"><rect x="214" y="50" width="112" height="30" rx="5" fill="#334155"/><text class="dp-in1" x="222" y="69" fill="#fbbf24" font-size="10" font-weight="700">Input: DisplayPort</text><text class="dp-in2" x="222" y="69" fill="#4ade80" font-size="10" font-weight="700">Input: HDMI 1 ✓</text></g>' +
+        '<rect x="310" y="190" width="28" height="18" fill="#334155"/><rect x="284" y="208" width="80" height="8" rx="3" fill="#334155"/>' +
+        '<path class="dp-cable" d="M140 176 C180 226 280 230 320 206" stroke="#64748b" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+        '<path class="dp-cable dp-bad" d="M102 176 H124" stroke="#64748b" stroke-width="6" fill="none"/>' +
+        '<path class="dp-new" d="M96 176 H140" stroke="#2dd4bf" stroke-width="8" fill="none"/>' +
+        LENS(118, 176) + TAG(118, 142, 'LOOSE HDMI') +
+        ALARM(452, 34) + CHECK(452, 34),
+      caps: [
+        '<b>Problem:</b> after a desk move, the user\'s monitor shows <b>"No signal"</b>.',
+        '<b>Check:</b> open the monitor menu and inspect both ends of the video cable.',
+        '<b>Diagnose:</b> the <b>HDMI cable is half out</b> at the PC, and the monitor is on the wrong input.',
+        '<b>Fix:</b> reseat the cable firmly and switch the monitor input to HDMI.',
+        '<b>Verified:</b> the desktop appears at full resolution. ✓'
+      ],
+      exp: '<b>Desktop, laptop and peripheral installation and support</b> for branch staff at SBI and for C-DIT and Smartipz users, including new workstation setups and moves.'
+    },
     system: {
       label: 'System', title: 'PC won\'t start', icon: ICON.system, flame: true,
       svg:
@@ -757,7 +911,7 @@
       exp: '<b>Patch management, antivirus/endpoint security updates and Windows Firewall</b> for banking (SBI) and public-sector (Kerala MVD) environments.'
     }
   };
-  var ORDER = ['system', 'printer', 'network', 'ad', 'backup', 'security'];
+  var ORDER = ['system', 'slowpc', 'bsod', 'display', 'printer', 'network', 'ad', 'outlook', 'backup', 'security'];
   var STEPS = ['Problem', 'Open up', 'Diagnose', 'Fix', 'Verified'];
   var TIMES = [0, 1700, 3500, 5600, 7700];
   var solved = {};
