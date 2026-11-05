@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,6 +58,23 @@
   .eyebrow{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
   h2{font-size:1.9rem;margin-bottom:32px}
 
+
+  /* language switcher + translations */
+  .lang-sel{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:500 .85rem Inter,'Noto Sans Arabic','Noto Sans Devanagari','Noto Sans Tamil','Noto Sans Malayalam',sans-serif;cursor:pointer;margin-left:16px}
+  .lang-sel:focus{outline:2px solid var(--accent);outline-offset:2px}
+  html:not([lang="en"]) body{font-family:Inter,'Noto Sans Arabic','Noto Sans Devanagari','Noto Sans Tamil','Noto Sans Malayalam',system-ui,sans-serif}
+  html[lang="ta"] nav ul,html[lang="ml"] nav ul,html[lang="hi"] nav ul{gap:16px}
+  html[lang="ta"] nav ul a,html[lang="ml"] nav ul a{font-size:.84rem}
+  html[lang="ta"] h1,html[lang="ml"] h1{letter-spacing:0}
+  html[lang="ta"] h2,html[lang="ml"] h2{font-size:clamp(1.4rem,3vw,2rem);line-height:1.35}
+  [dir="rtl"] .lang-sel{margin-left:0;margin-right:16px}
+  [dir="rtl"] .timeline{padding-left:0;padding-right:28px}
+  [dir="rtl"] .timeline:before{left:auto;right:7px}
+  [dir="rtl"] .job:before{left:auto;right:-27px}
+  [dir="rtl"] .job ul{padding-left:0;padding-right:18px}
+  [dir="rtl"] .facts li span:last-child{text-align:left}
+  [dir="rtl"] .eyebrow{letter-spacing:0}
+  [dir="rtl"] .stat b{direction:ltr;text-align:right}
   /* projects */
   .skills.projects{grid-template-columns:repeat(2,1fr)}
   a.skill{display:block;transition:transform .2s,border-color .2s}
@@ -331,15 +348,22 @@
   <div class="wrap">
     <a href="#top" class="logo">Suvin<span>.</span>VS</a>
     <ul>
-      <li><a href="#intro">Intro</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#fixit">See me at work</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#learning">Learning</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#intro" data-i18n="n_intro">Intro</a></li>
+      <li><a href="#about" data-i18n="n_about">About</a></li>
+      <li><a href="#skills" data-i18n="n_skills">Skills</a></li>
+      <li><a href="#fixit" data-i18n="n_fix">See me at work</a></li>
+      <li><a href="#projects" data-i18n="n_proj">Projects</a></li>
+      <li><a href="#experience" data-i18n="n_exp">Experience</a></li>
+      <li><a href="#learning" data-i18n="n_learn">Learning</a></li>
+      <li><a href="#contact" data-i18n="n_contact">Contact</a></li>
     </ul>
+    <select id="langSel" class="lang-sel" aria-label="Language / اللغة">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="hi">हिन्दी</option>
+      <option value="ta">தமிழ்</option>
+      <option value="ml">മലയാളം</option>
+    </select>
   </div>
 </nav>
 
@@ -347,53 +371,53 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="tag"><span class="dot"></span>Available to join immediately · UAE</div>
+        <div class="tag"><span class="dot"></span><span data-i18n="h_tag">Available to join immediately · UAE</span></div>
         <h1>Suvin V S</h1>
-        <div class="role">Senior System Administrator · Desktop Support Engineer · IT Infrastructure</div>
-        <p class="lead">12+ years keeping banking, government and business IT running across Windows Server, Active Directory, Cisco networks, Microsoft 365 and hands-on hardware support, with minimal downtime.</p>
+        <div class="role" data-i18n="h_role">Senior System Administrator · Desktop Support Engineer · IT Infrastructure</div>
+        <p class="lead" data-i18n="h_lead">12+ years keeping banking, government and business IT running across Windows Server, Active Directory, Cisco networks, Microsoft 365 and hands-on hardware support, with minimal downtime.</p>
         <div class="btns">
-          <a class="btn primary" href="#contact">Get in touch</a>
-          <a class="btn ghost" href="Suvin_VS_CV.pdf" target="_blank" rel="noopener" download>Download CV</a>
-          <a class="btn ghost" href="#experience">View experience</a>
+          <a class="btn primary" href="#contact" data-i18n="b_touch">Get in touch</a>
+          <a class="btn ghost" href="Suvin_VS_CV.pdf" target="_blank" rel="noopener" download data-i18n="b_cv">Download CV</a>
+          <a class="btn ghost" href="#experience" data-i18n="b_exp">View experience</a>
         </div>
       </div>
       <img class="avatar" src="photo.jpg" alt="Suvin V S">
     </div>
 
     <div class="stats">
-      <div class="stat"><b>12+</b><span>Years in IT support &amp; infrastructure</span></div>
-      <div class="stat"><b>44</b><span>SBI branches supported, Trivandrum region</span></div>
-      <div class="stat"><b>5</b><span>Roles across banking, govt &amp; enterprise</span></div>
-      <div class="stat"><b>2014</b><span>In IT infrastructure since</span></div>
+      <div class="stat"><b>12+</b><span data-i18n="st1">Years in IT support &amp; infrastructure</span></div>
+      <div class="stat"><b>44</b><span data-i18n="st2">SBI branches supported, Trivandrum region</span></div>
+      <div class="stat"><b>5</b><span data-i18n="st3">Roles across banking, govt &amp; enterprise</span></div>
+      <div class="stat"><b>2014</b><span data-i18n="st4">In IT infrastructure since</span></div>
     </div>
   </div>
 </header>
 
 <section class="alt" id="intro">
   <div class="wrap" style="text-align:center">
-    <div class="eyebrow">Intro</div>
-    <h2>My profile in 30 seconds</h2>
+    <div class="eyebrow" data-i18n="n_intro">Intro</div>
+    <h2 data-i18n="i_h2">My profile in 30 seconds</h2>
     <div class="video"><video src="intro.mp4" poster="poster.jpg" controls muted playsinline preload="metadata"></video></div>
   </div>
 </section>
 
 <section id="about">
   <div class="wrap">
-    <div class="eyebrow">About me</div>
-    <h2>Reliable IT, from the server room to the end user</h2>
+    <div class="eyebrow" data-i18n="a_eye">About me</div>
+    <h2 data-i18n="a_h2">Reliable IT, from the server room to the end user</h2>
     <div class="about">
       <div>
-        <p>I'm an IT infrastructure professional from Kerala, India, with more than 12 years of experience in system administration, network support and end-user IT across banking, public-sector and enterprise environments.</p>
-        <p>In my current role I'm the technical administrator for State Bank of India branch IT operations in the Trivandrum region. I handle Active Directory, Group Policy, DNS/DHCP, endpoint patching, OS deployment, hardware servicing and backup &amp; restore, onsite and remotely.</p>
-        <p>I'm now growing toward cloud infrastructure through AWS and CompTIA A+ studies, and I'm looking for a System Administrator, Desktop Support Engineer, IT Support Engineer or Network Administrator role in the UAE.</p>
+        <p data-i18n="a_p1">I'm an IT infrastructure professional from Kerala, India, with more than 12 years of experience in system administration, network support and end-user IT across banking, public-sector and enterprise environments.</p>
+        <p data-i18n="a_p2">In my most recent role I was the technical administrator for State Bank of India branch IT operations in the Trivandrum region. I handled Active Directory, Group Policy, DNS/DHCP, endpoint patching, OS deployment, hardware servicing and backup &amp; restore, onsite and remotely.</p>
+        <p data-i18n="a_p3">I'm now growing toward cloud infrastructure through AWS and CompTIA A+ studies, and I'm looking for a System Administrator, Desktop Support Engineer, IT Support Engineer or Network Administrator role in the UAE.</p>
       </div>
       <ul class="facts">
-        <li><span>Based in</span><span>Kerala, India → Abu Dhabi, UAE</span></li>
-        <li><span>Availability</span><span>Immediate joining</span></li>
-        <li><span>Target roles</span><span>System Admin · Desktop Support · IT Support · Network Admin</span></li>
-        <li><span>Industries</span><span>Banking · Government · Enterprise ERP</span></li>
-        <li><span>Languages</span><span>Malayalam (native) · English · Hindi · Tamil</span></li>
-        <li><span>Nationality</span><span>Indian</span></li>
+        <li><span data-i18n="f_based">Based in</span><span data-i18n="f_based_v">Kerala, India → Abu Dhabi, UAE</span></li>
+        <li><span data-i18n="f_avail">Availability</span><span data-i18n="f_avail_v">Immediate joining</span></li>
+        <li><span data-i18n="f_roles">Target roles</span><span data-i18n="f_roles_v">System Admin · Desktop Support · IT Support · Network Admin</span></li>
+        <li><span data-i18n="f_ind">Industries</span><span data-i18n="f_ind_v">Banking · Government · Enterprise ERP</span></li>
+        <li><span data-i18n="f_lang">Languages</span><span data-i18n="f_lang_v">Malayalam (native) · English · Hindi · Tamil</span></li>
+        <li><span data-i18n="f_nat">Nationality</span><span data-i18n="f_nat_v">Indian</span></li>
       </ul>
     </div>
   </div>
@@ -401,37 +425,37 @@
 
 <section class="alt" id="skills">
   <div class="wrap">
-    <div class="eyebrow">Skills</div>
-    <h2>What I work with</h2>
+    <div class="eyebrow" data-i18n="n_skills">Skills</div>
+    <h2 data-i18n="sk_h2">What I work with</h2>
     <div class="skills">
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg></div>
-        <h3>Systems Administration</h3>
+        <h3 data-i18n="sk1">Systems Administration</h3>
         <div class="chips"><span class="chip">Windows Server 2008 R2–2022</span><span class="chip">Active Directory</span><span class="chip">Group Policy</span><span class="chip">DNS / DHCP</span><span class="chip">Patch management</span><span class="chip">Endpoint security</span></div>
       </div>
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></div>
-        <h3>Networking</h3>
+        <h3 data-i18n="sk2">Networking</h3>
         <div class="chips"><span class="chip">Cisco routing &amp; switching</span><span class="chip">LAN / WAN</span><span class="chip">Firewall &amp; ports</span><span class="chip">VPN</span><span class="chip">Wi-Fi</span><span class="chip">Troubleshooting</span></div>
       </div>
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3>Hardware &amp; End-User Support</h3>
+        <h3 data-i18n="sk3">Hardware &amp; End-User Support</h3>
         <div class="chips"><span class="chip">Desktops &amp; laptops</span><span class="chip">Windows 7–11</span><span class="chip">VC systems</span><span class="chip">Printers &amp; scanners</span><span class="chip">OS installation</span><span class="chip">Preventive maintenance</span><span class="chip">Remote &amp; onsite</span></div>
       </div>
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4 12a4 4 0 0 0 1 7.9z"/></svg></div>
-        <h3>Cloud &amp; Productivity</h3>
+        <h3 data-i18n="sk4">Cloud &amp; Productivity</h3>
         <div class="chips"><span class="chip">Microsoft 365 admin</span><span class="chip">Hyper-V (learning)</span><span class="chip">PowerShell (learning)</span><span class="chip">AWS (learning)</span><span class="chip">ERP deployment support</span></div>
       </div>
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
-        <h3>Data &amp; Recovery</h3>
+        <h3 data-i18n="sk5">Data &amp; Recovery</h3>
         <div class="chips"><span class="chip">Backup &amp; restore</span><span class="chip">SQL Server backups</span><span class="chip">Disaster recovery docs</span></div>
       </div>
       <div class="skill">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
-        <h3>Service &amp; Documentation</h3>
+        <h3 data-i18n="sk6">Service &amp; Documentation</h3>
         <div class="chips"><span class="chip">Ticketing &amp; SLAs</span><span class="chip">Asset inventory</span><span class="chip">Vendor coordination</span><span class="chip">Technical docs</span></div>
       </div>
     </div>
@@ -440,42 +464,42 @@
 
 <section id="fixit">
   <div class="wrap">
-    <div class="eyebrow">See me at work</div>
-    <h2>Tap a problem. Watch it get fixed.</h2>
-    <p class="fi-intro">Ten everyday IT and desktop support problems from my 12+ years in banking, government and business IT. Each one plays out step by step: problem, diagnosis, fix and check.</p>
+    <div class="eyebrow" data-i18n="n_fix">See me at work</div>
+    <h2 data-i18n="fx_h2">Tap a problem. Watch it get fixed.</h2>
+    <p class="fi-intro" data-i18n="fx_p">Ten everyday IT and desktop support problems from my 12+ years in banking, government and business IT. Each one plays out step by step: problem, diagnosis, fix and check.</p>
     <div class="fi-grid" id="fiGrid"></div>
   </div>
 </section>
 
 <section class="alt" id="projects">
   <div class="wrap">
-    <div class="eyebrow">Hands-on labs</div>
-    <h2>Projects on GitHub</h2>
-    <p class="fi-intro" style="margin:0 0 26px">Home-lab projects with the code, build guides and my own screenshots. Each card opens the project on GitHub.</p>
+    <div class="eyebrow" data-i18n="pj_eye">Hands-on labs</div>
+    <h2 data-i18n="pj_h2">Projects on GitHub</h2>
+    <p class="fi-intro" style="margin:0 0 26px" data-i18n="pj_p">Home-lab projects with the code, build guides and my own screenshots. Each card opens the project on GitHub.</p>
     <div class="skills projects">
       <a class="skill" href="https://github.com/Suvinofficial/sysadmin-powershell-toolkit" target="_blank" rel="noopener" style="color:inherit">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 17l6-5-6-5M12 19h8"/></svg></div>
         <h3>Sysadmin PowerShell Toolkit</h3>
-        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px">Health reports, connectivity checks, Robocopy backups, software inventory and inactive-AD-user clean-up, tested on my own PC.</p>
-        <div class="chips"><span class="chip">PowerShell</span><span class="chip">WMI/CIM</span><span class="chip">Robocopy</span><span class="chip">Completed</span></div>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px" data-i18n="pj1">Health reports, connectivity checks, Robocopy backups, software inventory and inactive-AD-user clean-up, tested on my own PC.</p>
+        <div class="chips"><span class="chip">PowerShell</span><span class="chip">WMI/CIM</span><span class="chip">Robocopy</span><span class="chip" data-i18n="c_done">Completed</span></div>
       </a>
       <a class="skill" href="https://github.com/Suvinofficial/packet-tracer-office-network" target="_blank" rel="noopener" style="color:inherit">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></div>
         <h3>Secure Office Network (Cisco)</h3>
-        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px">5 VLANs, inter-VLAN routing, DHCP, NAT, guest isolation with ACLs, SSH-only management and port security. 7 of 8 tests passed.</p>
-        <div class="chips"><span class="chip">Cisco IOS</span><span class="chip">VLANs</span><span class="chip">ACLs</span><span class="chip">Completed</span></div>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px" data-i18n="pj2">5 VLANs, inter-VLAN routing, DHCP, NAT, guest isolation with ACLs, SSH-only management and port security. 7 of 8 tests passed.</p>
+        <div class="chips"><span class="chip">Cisco IOS</span><span class="chip">VLANs</span><span class="chip">ACLs</span><span class="chip" data-i18n="c_done">Completed</span></div>
       </a>
       <a class="skill" href="https://github.com/Suvinofficial/ad-home-lab" target="_blank" rel="noopener" style="color:inherit">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg></div>
         <h3>Active Directory Home Lab</h3>
-        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px">Windows Server 2025 domain controller: AD DS, DNS, DHCP, 15 users in 5 departments, Group Policy and NTFS file shares, built with PowerShell.</p>
-        <div class="chips"><span class="chip">Windows Server 2025</span><span class="chip">AD DS</span><span class="chip">GPO</span><span class="chip">DC built</span></div>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px" data-i18n="pj3">Windows Server 2025 domain controller: AD DS, DNS, DHCP, 15 users in 5 departments, Group Policy and NTFS file shares, built with PowerShell.</p>
+        <div class="chips"><span class="chip">Windows Server 2025</span><span class="chip">AD DS</span><span class="chip">GPO</span><span class="chip" data-i18n="c_dc">DC built</span></div>
       </a>
       <a class="skill" href="https://github.com/Suvinofficial/aws-vpc-ec2-webserver" target="_blank" rel="noopener" style="color:inherit">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-7.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9H7z"/></svg></div>
         <h3>AWS VPC + EC2 Web Server</h3>
-        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px">CloudFormation template for a custom VPC, least-privilege security group, Session Manager access, IMDSv2 and a CloudWatch alarm.</p>
-        <div class="chips"><span class="chip">AWS</span><span class="chip">CloudFormation</span><span class="chip">VPC / EC2</span><span class="chip">In progress</span></div>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:12px" data-i18n="pj4">CloudFormation template for a custom VPC, least-privilege security group, Session Manager access, IMDSv2 and a CloudWatch alarm.</p>
+        <div class="chips"><span class="chip">AWS</span><span class="chip">CloudFormation</span><span class="chip">VPC / EC2</span><span class="chip" data-i18n="c_prog">In progress</span></div>
       </a>
     </div>
   </div>
@@ -483,56 +507,56 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="eyebrow">Experience</div>
-    <h2>Where I've worked</h2>
+    <div class="eyebrow" data-i18n="n_exp">Experience</div>
+    <h2 data-i18n="e_h2">Where I've worked</h2>
     <div class="timeline">
       <div class="job">
         <div class="job-head"><h3>Senior Infrastructure Lead / System Administrator</h3><span class="when mono">Jan 2026 – Nov 2026</span></div>
         <div class="org">Infolink Technologies Pvt. Ltd. · Deputed at State Bank of India, Trivandrum RBO 4</div>
         <ul>
-          <li>Primary technical administrator for SBI branches in the Trivandrum region, covering hardware, software, endpoints and network.</li>
-          <li>Administer Active Directory, user accounts, domain services, Group Policy and DNS.</li>
-          <li>Windows endpoint deployment, OS installation, patching, and antivirus / endpoint security updates.</li>
-          <li>Remote support, system recovery and data retrieval to minimise disruption to banking operations.</li>
-          <li>Install, configure and service printers, scanners and peripherals. Backup &amp; restore before and after rebuilds.</li>
+          <li data-i18n="j1a">Primary technical administrator for SBI branches in the Trivandrum region, covering hardware, software, endpoints and network.</li>
+          <li data-i18n="j1b">Administer Active Directory, user accounts, domain services, Group Policy and DNS.</li>
+          <li data-i18n="j1c">Windows endpoint deployment, OS installation, patching, and antivirus / endpoint security updates.</li>
+          <li data-i18n="j1d">Remote support, system recovery and data retrieval to minimise disruption to banking operations.</li>
+          <li data-i18n="j1e">Install, configure and service printers, scanners and peripherals. Backup &amp; restore before and after rebuilds.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-head"><h3>Senior Systems &amp; ERP Deployment Specialist</h3><span class="when mono">May 2025 – Jan 2026</span></div>
         <div class="org">Smartipz Business Solutions · Varkala / Trivandrum</div>
         <ul>
-          <li>Enterprise ERP deployments: installation, configuration and client-specific technical mapping.</li>
-          <li>SQL Server 2008 R2 backup, restore and monitoring.</li>
-          <li>Microsoft 365 / Office 365 administration, provisioning and remote troubleshooting for client organisations.</li>
-          <li>Installed and serviced client desktops, laptops, printers and scanners, with OS installation and backup &amp; restore.</li>
+          <li data-i18n="j2a">Enterprise ERP deployments: installation, configuration and client-specific technical mapping.</li>
+          <li data-i18n="j2b">SQL Server 2008 R2 backup, restore and monitoring.</li>
+          <li data-i18n="j2c">Microsoft 365 / Office 365 administration, provisioning and remote troubleshooting for client organisations.</li>
+          <li data-i18n="j2d">Installed and serviced client desktops, laptops, printers and scanners, with OS installation and backup &amp; restore.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-head"><h3>Assistant System Administrator</h3><span class="when mono">Dec 2021 – Apr 2025</span></div>
         <div class="org">C-DIT (Govt. of Kerala) · Deputed at Kerala Motor Vehicles Department</div>
         <ul>
-          <li>Managed Windows Server environments, user accounts, Group Policy, Windows Firewall, security updates and patching.</li>
-          <li>Supported server infrastructure and end users: desktops, printers, scanners and network devices.</li>
-          <li>Supported department-wide video-conferencing infrastructure and remote connectivity.</li>
-          <li>Maintained documentation, technical logs, hardware/software inventories and recovery/failover procedures.</li>
+          <li data-i18n="j3a">Managed Windows Server environments, user accounts, Group Policy, Windows Firewall, security updates and patching.</li>
+          <li data-i18n="j3b">Supported server infrastructure and end users: desktops, printers, scanners and network devices.</li>
+          <li data-i18n="j3c">Supported department-wide video-conferencing infrastructure and remote connectivity.</li>
+          <li data-i18n="j3d">Maintained documentation, technical logs, hardware/software inventories and recovery/failover procedures.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-head"><h3>System &amp; Network Administrator</h3><span class="when mono">Oct 2018 – Dec 2021</span></div>
         <div class="org">Smartipz Business Solutions · Trivandrum</div>
         <ul>
-          <li>Installed and maintained servers, desktops, laptops, printers and business software for clients.</li>
-          <li>Monitored and troubleshot LAN, network and IoT infrastructure, and coordinated vendor support.</li>
-          <li>Remote and onsite support, OS installation, software upgrades and hardware troubleshooting.</li>
+          <li data-i18n="j4a">Installed and maintained servers, desktops, laptops, printers and business software for clients.</li>
+          <li data-i18n="j4b">Monitored and troubleshot LAN, network and IoT infrastructure, and coordinated vendor support.</li>
+          <li data-i18n="j4c">Remote and onsite support, OS installation, software upgrades and hardware troubleshooting.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-head"><h3>Network Administrator</h3><span class="when mono">May 2014 – Oct 2018</span></div>
         <div class="org">Zeekoi Technologies Pvt. Ltd. · Kollam</div>
         <ul>
-          <li>Configured and maintained corporate LAN infrastructure using Cisco routers and switches.</li>
-          <li>Network monitoring, troubleshooting, routing issue isolation and connectivity support.</li>
-          <li>Installed and maintained servers, desktops and business software. Supported Microsoft 365.</li>
+          <li data-i18n="j5a">Configured and maintained corporate LAN infrastructure using Cisco routers and switches.</li>
+          <li data-i18n="j5b">Network monitoring, troubleshooting, routing issue isolation and connectivity support.</li>
+          <li data-i18n="j5c">Installed and maintained servers, desktops and business software. Supported Microsoft 365.</li>
         </ul>
       </div>
     </div>
@@ -541,24 +565,24 @@
 
 <section class="alt" id="learning">
   <div class="wrap">
-    <div class="eyebrow">Education &amp; learning</div>
-    <h2>Always building on the foundation</h2>
+    <div class="eyebrow" data-i18n="l_eye">Education &amp; learning</div>
+    <h2 data-i18n="l_h2">Always building on the foundation</h2>
     <div class="two">
       <div class="box">
-        <h3>B.Tech, Electronics &amp; Communication Engineering</h3>
+        <h3 data-i18n="l_btech">B.Tech, Electronics &amp; Communication Engineering</h3>
         <p>Amrita College of Engineering and Technology, Nagercoil · 2021</p>
-        <span class="pill">Attested certificate</span>
-        <h3 style="margin-top:22px">Diploma, Electronics &amp; Communication Engineering</h3>
+        <span class="pill" data-i18n="l_att">Attested certificate</span>
+        <h3 style="margin-top:22px" data-i18n="l_dip">Diploma, Electronics &amp; Communication Engineering</h3>
         <p>Sun College of Engineering and Technology, Nagercoil · 2011</p>
       </div>
       <div class="box">
-        <h3>Certifications in progress</h3>
-        <p>Extending my on-premises experience into cloud and industry-standard credentials.</p>
+        <h3 data-i18n="l_certs">Certifications in progress</h3>
+        <p data-i18n="l_ext">Extending my on-premises experience into cloud and industry-standard credentials.</p>
         <div class="progress">
-          <div><span>AWS Certification</span><span class="mono" style="color:var(--accent)">In progress</span></div>
-          <div><span>CompTIA A+</span><span class="mono" style="color:var(--accent)">In progress</span></div>
+          <div><span>AWS Certification</span><span class="mono" style="color:var(--accent)" data-i18n="c_prog">In progress</span></div>
+          <div><span>CompTIA A+</span><span class="mono" style="color:var(--accent)" data-i18n="c_prog">In progress</span></div>
         </div>
-        <h3 style="margin-top:18px;font-size:1rem">Also learning</h3>
+        <h3 style="margin-top:18px;font-size:1rem" data-i18n="l_also">Also learning</h3>
         <div class="chips" style="margin-top:10px"><span class="chip">CCNA</span><span class="chip">PowerShell</span><span class="chip">Hyper-V</span><span class="chip">Cisco IOS</span><span class="chip">macOS</span></div>
       </div>
     </div>
@@ -567,25 +591,25 @@
 
 <section id="contact">
   <div class="wrap contact">
-    <div class="eyebrow">Contact</div>
-    <h2>Let's talk</h2>
-    <p>I'm available for interviews in person in Abu Dhabi or by video call, and can join immediately. You can download my full CV below.</p>
+    <div class="eyebrow" data-i18n="n_contact">Contact</div>
+    <h2 data-i18n="ct_h2">Let's talk</h2>
+    <p data-i18n="ct_p">I'm available for interviews in person in Abu Dhabi or by video call, and can join immediately. You can download my full CV below.</p>
     <div class="cards">
-      <div class="ccard"><small>Email</small><a href="mailto:suvinoffice@gmail.com">suvinoffice@gmail.com</a></div>
+      <div class="ccard"><small data-i18n="ct_email">Email</small><a href="mailto:suvinoffice@gmail.com">suvinoffice@gmail.com</a></div>
       <div class="ccard"><small>LinkedIn</small><a href="https://www.linkedin.com/in/suvin-v-s-780102297" target="_blank" rel="noopener">linkedin.com/in/suvin-v-s-780102297</a></div>
-      <div class="ccard"><small>CV</small><a href="Suvin_VS_CV.pdf" target="_blank" rel="noopener" download>Download PDF</a></div>
+      <div class="ccard"><small data-i18n="ct_cv">CV</small><a href="Suvin_VS_CV.pdf" target="_blank" rel="noopener" download data-i18n="ct_pdf">Download PDF</a></div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Suvin V S · Senior System Administrator · Desktop Support Engineer</footer>
+<footer data-i18n="foot">© 2026 Suvin V S · Senior System Administrator · Desktop Support Engineer</footer>
 
 
 
 <!-- ===================== "Fix it" floating dock + pop-up ===================== -->
 <nav class="fi-dock" id="fiDock" aria-label="IT problems I can fix"></nav>
-<div class="fi-hint" id="fiHint" role="status">👋 Tap an icon to see how I fix it!</div>
-<div class="fi-overlay" id="fiOverlay" role="dialog" aria-modal="true" aria-label="Problem and fix">
+<div class="fi-hint" id="fiHint" role="status" data-i18n="hint">👋 Tap an icon to see how I fix it!</div>
+<div class="fi-overlay" dir="ltr" id="fiOverlay" role="dialog" aria-modal="true" aria-label="Problem and fix">
   <div class="fi-modal">
     <div class="fi-head" id="fiHead"></div>
     <div class="fi-stage" id="fiStage"></div>
@@ -1002,7 +1026,7 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   <span>Ask me anything</span>
 </button>
-<div class="cb-panel" id="cbPanel" role="dialog" aria-label="Chat with Suvin">
+<div class="cb-panel" dir="ltr" id="cbPanel" role="dialog" aria-label="Chat with Suvin">
   <div class="cb-head">
     <img src="photo.jpg" alt="">
     <div><b>Chat with Suvin</b><small>● Instant answers about my profile</small></div>
@@ -1168,5 +1192,40 @@
 })();
 </script>
 
+<script>
+(function () {
+  var T = {"ar": {"n_intro": "مقدمة", "n_about": "نبذة عني", "n_skills": "المهارات", "n_fix": "عملي", "n_proj": "المشاريع", "n_exp": "الخبرة", "n_learn": "التعليم", "n_contact": "تواصل", "h_tag": "متاح للانضمام فوراً · الإمارات", "h_role": "مسؤول أنظمة أول · مهندس دعم أجهزة سطح المكتب · البنية التحتية لتقنية المعلومات", "h_lead": "أكثر من 12 عاماً في تشغيل أنظمة تقنية المعلومات للبنوك والجهات الحكومية والشركات، باستخدام Windows Server وActive Directory وشبكات Cisco و<bdi>Microsoft 365<\/bdi> والدعم الفني للأجهزة، بأقل وقت توقف ممكن.", "b_touch": "تواصل معي", "b_cv": "تحميل السيرة الذاتية", "b_exp": "عرض الخبرة", "st1": "سنوات في دعم وبنية تقنية المعلومات", "st2": "فرعاً لبنك SBI تحت دعمي، منطقة تريفاندرم", "st3": "وظائف في البنوك والحكومة والشركات", "st4": "في مجال البنية التحتية منذ", "i_h2": "ملفي في 30 ثانية", "a_eye": "نبذة عني", "a_h2": "تقنية معلومات موثوقة، من غرفة الخوادم إلى المستخدم النهائي", "a_p1": "أنا متخصص في البنية التحتية لتقنية المعلومات من ولاية كيرالا في الهند، ولدي أكثر من 12 عاماً من الخبرة في إدارة الأنظمة ودعم الشبكات ودعم المستخدمين في البنوك والقطاع العام والشركات.", "a_p2": "في وظيفتي الأخيرة كنت المسؤول الفني عن عمليات تقنية المعلومات في فروع بنك الدولة الهندي (SBI) بمنطقة تريفاندرم. تولّيت Active Directory وGroup Policy وDNS/DHCP وتحديثات الأجهزة وتثبيت أنظمة التشغيل وصيانة الأجهزة والنسخ الاحتياطي والاستعادة، في الموقع وعن بُعد.", "a_p3": "أعمل حالياً على التوسع نحو البنية التحتية السحابية من خلال دراسة AWS وCompTIA A+، وأبحث عن وظيفة مسؤول أنظمة أو مهندس دعم أجهزة سطح المكتب أو مهندس دعم تقني أو مسؤول شبكات في الإمارات.", "f_based": "مكان الإقامة", "f_based_v": "كيرالا، الهند ← أبوظبي، الإمارات", "f_avail": "التوفر", "f_avail_v": "انضمام فوري", "f_roles": "الوظائف المستهدفة", "f_roles_v": "مسؤول أنظمة · دعم سطح المكتب · دعم تقني · مسؤول شبكات", "f_ind": "القطاعات", "f_ind_v": "البنوك · الحكومة · أنظمة ERP للشركات", "f_lang": "اللغات", "f_lang_v": "المالايالامية (اللغة الأم) · الإنجليزية · الهندية · التاميلية", "f_nat": "الجنسية", "f_nat_v": "هندي", "sk_h2": "ما أعمل به", "sk1": "إدارة الأنظمة", "sk2": "الشبكات", "sk3": "دعم الأجهزة والمستخدمين", "sk4": "السحابة والإنتاجية", "sk5": "البيانات والاستعادة", "sk6": "الخدمة والتوثيق", "fx_h2": "اختر مشكلة وشاهد كيف تُحل.", "fx_p": "عشر مشكلات يومية في تقنية المعلومات ودعم أجهزة سطح المكتب من خبرتي التي تزيد على 12 عاماً في البنوك والحكومة والشركات. كل واحدة تُعرض خطوة بخطوة: المشكلة، التشخيص، الحل، والتحقق. (الرسوم المتحركة باللغة الإنجليزية.)", "pj_eye": "مختبرات عملية", "pj_h2": "مشاريعي على GitHub", "pj_p": "مشاريع مختبر منزلي مع الأكواد وأدلة البناء ولقطات الشاشة الخاصة بي. كل بطاقة تفتح المشروع على GitHub.", "pj1": "تقارير حالة النظام، فحص الاتصال، نسخ احتياطي بأداة Robocopy، جرد البرامج، وتنظيف حسابات AD غير النشطة، تم اختبارها على جهازي.", "pj2": "5 شبكات VLAN، توجيه بين الشبكات، DHCP، NAT، عزل شبكة الضيوف بقوائم ACL، إدارة عبر SSH فقط، وأمان المنافذ. نجح 7 من 8 اختبارات.", "pj3": "وحدة تحكم بالمجال على Windows Server 2025: AD DS وDNS وDHCP، و15 مستخدماً في 5 أقسام، وGroup Policy ومجلدات مشتركة بصلاحيات NTFS، تم بناؤها باستخدام PowerShell.", "pj4": "قالب CloudFormation لشبكة VPC مخصصة، مجموعة أمان بأقل الصلاحيات، وصول عبر Session Manager، وIMDSv2، وتنبيه CloudWatch.", "c_done": "مكتمل", "c_prog": "قيد التنفيذ", "c_dc": "تم بناء وحدة التحكم", "e_h2": "أماكن عملي", "j1a": "المسؤول الفني الأساسي لفروع SBI في منطقة تريفاندرم، شاملاً الأجهزة والبرامج وأجهزة المستخدمين والشبكة.", "j1b": "إدارة Active Directory وحسابات المستخدمين وخدمات المجال وGroup Policy وDNS.", "j1c": "تجهيز أجهزة Windows، تثبيت أنظمة التشغيل، التحديثات الأمنية، وتحديثات مكافحة الفيروسات وأمان الأجهزة.", "j1d": "الدعم عن بُعد واستعادة الأنظمة واسترجاع البيانات لتقليل تعطل العمليات المصرفية.", "j1e": "تركيب وإعداد وصيانة الطابعات والماسحات الضوئية والملحقات، والنسخ الاحتياطي والاستعادة قبل إعادة تجهيز الأجهزة وبعدها.", "j2a": "تطبيق أنظمة ERP للشركات: التثبيت والإعداد والتخصيص الفني لكل عميل.", "j2b": "النسخ الاحتياطي والاستعادة والمراقبة لقواعد بيانات SQL Server 2008 R2.", "j2c": "إدارة Microsoft 365 / Office 365 وتجهيز الحسابات وحل المشكلات عن بُعد لمؤسسات العملاء.", "j2d": "تركيب وصيانة أجهزة الحاسوب المكتبية والمحمولة والطابعات والماسحات الضوئية للعملاء، مع تثبيت أنظمة التشغيل والنسخ الاحتياطي والاستعادة.", "j3a": "إدارة بيئات Windows Server وحسابات المستخدمين وGroup Policy وجدار حماية Windows والتحديثات الأمنية.", "j3b": "دعم البنية التحتية للخوادم والمستخدمين: أجهزة الحاسوب والطابعات والماسحات الضوئية وأجهزة الشبكة.", "j3c": "دعم بنية مؤتمرات الفيديو على مستوى الإدارة والاتصال عن بُعد.", "j3d": "الحفاظ على التوثيق والسجلات الفنية وقوائم جرد الأجهزة والبرامج وإجراءات الاستعادة والتحويل الاحتياطي.", "j4a": "تركيب وصيانة الخوادم والحواسيب المكتبية والمحمولة والطابعات وبرامج الأعمال للعملاء.", "j4b": "مراقبة وحل مشكلات الشبكات المحلية والبنية التحتية للشبكات وإنترنت الأشياء، والتنسيق مع الموردين.", "j4c": "الدعم عن بُعد وفي الموقع، وتثبيت أنظمة التشغيل، وترقية البرامج، وحل مشكلات الأجهزة.", "j5a": "إعداد وصيانة البنية التحتية للشبكة المحلية للشركة باستخدام موجهات ومحولات Cisco.", "j5b": "مراقبة الشبكة وحل المشكلات وعزل أعطال التوجيه ودعم الاتصال.", "j5c": "تركيب وصيانة الخوادم والحواسيب وبرامج الأعمال، ودعم Microsoft 365.", "l_eye": "التعليم والتعلم", "l_h2": "البناء المستمر على أساس متين", "l_btech": "بكالوريوس التكنولوجيا، هندسة الإلكترونيات والاتصالات", "l_dip": "دبلوم، هندسة الإلكترونيات والاتصالات", "l_att": "شهادة مصدّقة", "l_certs": "شهادات قيد الإنجاز", "l_ext": "أوسّع خبرتي في الأنظمة المحلية لتشمل الحوسبة السحابية والشهادات المعتمدة في القطاع.", "l_also": "أتعلم أيضاً", "ct_h2": "لنتحدث", "ct_p": "أنا متاح للمقابلات الشخصية في أبوظبي أو عبر مكالمة فيديو، ويمكنني الانضمام فوراً. يمكنك تحميل سيرتي الذاتية الكاملة أدناه.", "ct_email": "البريد الإلكتروني", "ct_cv": "السيرة الذاتية", "ct_pdf": "تحميل PDF", "foot": "© 2026 Suvin V S · مسؤول أنظمة أول · مهندس دعم أجهزة سطح المكتب", "hint": "👋 اضغط على أيقونة لترى كيف أحل المشكلة!"}, "hi": {"n_intro": "परिचय", "n_about": "मेरे बारे में", "n_skills": "कौशल", "n_fix": "मेरा काम", "n_proj": "प्रोजेक्ट्स", "n_exp": "अनुभव", "n_learn": "शिक्षा", "n_contact": "संपर्क", "h_tag": "तुरंत जॉइन करने के लिए उपलब्ध · यूएई", "h_role": "सीनियर सिस्टम एडमिनिस्ट्रेटर · डेस्कटॉप सपोर्ट इंजीनियर · आईटी इंफ्रास्ट्रक्चर", "h_lead": "12+ वर्षों से बैंकिंग, सरकारी और व्यावसायिक आईटी को Windows Server, Active Directory, Cisco नेटवर्क, Microsoft 365 और हार्डवेयर सपोर्ट के साथ न्यूनतम डाउनटाइम में चला रहा हूँ।", "b_touch": "संपर्क करें", "b_cv": "सीवी डाउनलोड करें", "b_exp": "अनुभव देखें", "st1": "आईटी सपोर्ट और इंफ्रास्ट्रक्चर में वर्ष", "st2": "SBI शाखाओं को सपोर्ट, त्रिवेंद्रम क्षेत्र", "st3": "बैंकिंग, सरकारी व एंटरप्राइज़ में भूमिकाएँ", "st4": "से आईटी इंफ्रास्ट्रक्चर में", "i_h2": "30 सेकंड में मेरी प्रोफ़ाइल", "a_eye": "मेरे बारे में", "a_h2": "भरोसेमंद आईटी, सर्वर रूम से लेकर यूज़र तक", "a_p1": "मैं केरल, भारत से एक आईटी इंफ्रास्ट्रक्चर प्रोफेशनल हूँ, और बैंकिंग, सरकारी क्षेत्र और एंटरप्राइज़ में सिस्टम एडमिनिस्ट्रेशन, नेटवर्क सपोर्ट और एंड-यूज़र आईटी का 12 वर्षों से अधिक का अनुभव रखता हूँ।", "a_p2": "अपनी पिछली भूमिका में मैं त्रिवेंद्रम क्षेत्र में स्टेट बैंक ऑफ़ इंडिया की शाखाओं के आईटी संचालन का तकनीकी एडमिनिस्ट्रेटर था। मैंने Active Directory, Group Policy, DNS/DHCP, एंडपॉइंट पैचिंग, OS डिप्लॉयमेंट, हार्डवेयर सर्विसिंग और बैकअप व रिस्टोर का काम ऑनसाइट और रिमोट दोनों तरह से संभाला।", "a_p3": "अब मैं AWS और CompTIA A+ की पढ़ाई के ज़रिए क्लाउड इंफ्रास्ट्रक्चर की ओर बढ़ रहा हूँ, और यूएई में सिस्टम एडमिनिस्ट्रेटर, डेस्कटॉप सपोर्ट इंजीनियर, आईटी सपोर्ट इंजीनियर या नेटवर्क एडमिनिस्ट्रेटर की भूमिका की तलाश में हूँ।", "f_based": "स्थान", "f_based_v": "केरल, भारत → अबू धाबी, यूएई", "f_avail": "उपलब्धता", "f_avail_v": "तुरंत जॉइनिंग", "f_roles": "लक्षित भूमिकाएँ", "f_roles_v": "सिस्टम एडमिन · डेस्कटॉप सपोर्ट · आईटी सपोर्ट · नेटवर्क एडमिन", "f_ind": "उद्योग", "f_ind_v": "बैंकिंग · सरकार · एंटरप्राइज़ ERP", "f_lang": "भाषाएँ", "f_lang_v": "मलयालम (मातृभाषा) · अंग्रेज़ी · हिंदी · तमिल", "f_nat": "राष्ट्रीयता", "f_nat_v": "भारतीय", "sk_h2": "मैं किन चीज़ों पर काम करता हूँ", "sk1": "सिस्टम एडमिनिस्ट्रेशन", "sk2": "नेटवर्किंग", "sk3": "हार्डवेयर और यूज़र सपोर्ट", "sk4": "क्लाउड और प्रोडक्टिविटी", "sk5": "डेटा और रिकवरी", "sk6": "सर्विस और डॉक्यूमेंटेशन", "fx_h2": "कोई समस्या चुनें, देखें कैसे ठीक होती है।", "fx_p": "बैंकिंग, सरकारी और बिज़नेस आईटी के मेरे 12+ वर्षों से रोज़मर्रा की दस आईटी और डेस्कटॉप सपोर्ट समस्याएँ। हर एक को चरण-दर-चरण दिखाया गया है: समस्या, जाँच, समाधान और पुष्टि। (एनिमेशन अंग्रेज़ी में हैं।)", "pj_eye": "हैंड्स-ऑन लैब्स", "pj_h2": "GitHub पर प्रोजेक्ट्स", "pj_p": "कोड, बिल्ड गाइड और मेरे अपने स्क्रीनशॉट के साथ होम-लैब प्रोजेक्ट्स। हर कार्ड GitHub पर प्रोजेक्ट खोलता है।", "pj1": "हेल्थ रिपोर्ट, कनेक्टिविटी जाँच, Robocopy बैकअप, सॉफ़्टवेयर इन्वेंटरी और निष्क्रिय AD यूज़र की सफ़ाई, मेरे अपने पीसी पर परखी गई।", "pj2": "5 VLAN, इंटर-VLAN राउटिंग, DHCP, NAT, ACL से गेस्ट आइसोलेशन, केवल SSH मैनेजमेंट और पोर्ट सिक्योरिटी। 8 में से 7 टेस्ट पास।", "pj3": "Windows Server 2025 डोमेन कंट्रोलर: AD DS, DNS, DHCP, 5 विभागों में 15 यूज़र, Group Policy और NTFS फ़ाइल शेयर, PowerShell से बनाया गया।", "pj4": "कस्टम VPC, न्यूनतम-अनुमति सिक्योरिटी ग्रुप, Session Manager एक्सेस, IMDSv2 और CloudWatch अलार्म के लिए CloudFormation टेम्पलेट।", "c_done": "पूर्ण", "c_prog": "प्रगति पर", "c_dc": "DC तैयार", "e_h2": "मैंने कहाँ काम किया है", "j1a": "त्रिवेंद्रम क्षेत्र में SBI शाखाओं के लिए मुख्य तकनीकी एडमिनिस्ट्रेटर — हार्डवेयर, सॉफ़्टवेयर, एंडपॉइंट और नेटवर्क।", "j1b": "Active Directory, यूज़र अकाउंट, डोमेन सेवाएँ, Group Policy और DNS का प्रबंधन।", "j1c": "Windows एंडपॉइंट डिप्लॉयमेंट, OS इंस्टॉलेशन, पैचिंग और एंटीवायरस / एंडपॉइंट सिक्योरिटी अपडेट।", "j1d": "बैंकिंग कामकाज में रुकावट कम करने के लिए रिमोट सपोर्ट, सिस्टम रिकवरी और डेटा रिट्रीवल।", "j1e": "प्रिंटर, स्कैनर और पेरिफेरल्स का इंस्टॉलेशन, कॉन्फ़िगरेशन और सर्विसिंग। रीबिल्ड से पहले और बाद में बैकअप व रिस्टोर।", "j2a": "एंटरप्राइज़ ERP डिप्लॉयमेंट: इंस्टॉलेशन, कॉन्फ़िगरेशन और क्लाइंट के अनुसार तकनीकी मैपिंग।", "j2b": "SQL Server 2008 R2 का बैकअप, रिस्टोर और मॉनिटरिंग।", "j2c": "क्लाइंट संगठनों के लिए Microsoft 365 / Office 365 एडमिनिस्ट्रेशन, प्रोविज़निंग और रिमोट ट्रबलशूटिंग।", "j2d": "क्लाइंट के डेस्कटॉप, लैपटॉप, प्रिंटर और स्कैनर का इंस्टॉलेशन और सर्विसिंग, OS इंस्टॉलेशन और बैकअप व रिस्टोर सहित।", "j3a": "Windows Server वातावरण, यूज़र अकाउंट, Group Policy, Windows Firewall, सिक्योरिटी अपडेट और पैचिंग का प्रबंधन।", "j3b": "सर्वर इंफ्रास्ट्रक्चर और यूज़र्स को सपोर्ट: डेस्कटॉप, प्रिंटर, स्कैनर और नेटवर्क डिवाइस।", "j3c": "पूरे विभाग की वीडियो-कॉन्फ्रेंसिंग व्यवस्था और रिमोट कनेक्टिविटी को सपोर्ट।", "j3d": "डॉक्यूमेंटेशन, तकनीकी लॉग, हार्डवेयर/सॉफ़्टवेयर इन्वेंटरी और रिकवरी/फ़ेलओवर प्रक्रियाओं का रखरखाव।", "j4a": "क्लाइंट्स के लिए सर्वर, डेस्कटॉप, लैपटॉप, प्रिंटर और बिज़नेस सॉफ़्टवेयर का इंस्टॉलेशन और रखरखाव।", "j4b": "LAN, नेटवर्क और IoT इंफ्रास्ट्रक्चर की मॉनिटरिंग व ट्रबलशूटिंग, और वेंडर सपोर्ट का समन्वय।", "j4c": "रिमोट और ऑनसाइट सपोर्ट, OS इंस्टॉलेशन, सॉफ़्टवेयर अपग्रेड और हार्डवेयर ट्रबलशूटिंग।", "j5a": "Cisco राउटर और स्विच के साथ कॉर्पोरेट LAN इंफ्रास्ट्रक्चर का कॉन्फ़िगरेशन और रखरखाव।", "j5b": "नेटवर्क मॉनिटरिंग, ट्रबलशूटिंग, राउटिंग समस्याओं की पहचान और कनेक्टिविटी सपोर्ट।", "j5c": "सर्वर, डेस्कटॉप और बिज़नेस सॉफ़्टवेयर का इंस्टॉलेशन और रखरखाव। Microsoft 365 सपोर्ट।", "l_eye": "शिक्षा और सीखना", "l_h2": "मज़बूत नींव पर लगातार आगे बढ़ना", "l_btech": "बी.टेक, इलेक्ट्रॉनिक्स एवं कम्युनिकेशन इंजीनियरिंग", "l_dip": "डिप्लोमा, इलेक्ट्रॉनिक्स एवं कम्युनिकेशन इंजीनियरिंग", "l_att": "सत्यापित प्रमाणपत्र", "l_certs": "प्रगति पर सर्टिफ़िकेशन", "l_ext": "अपने ऑन-प्रिमाइसेस अनुभव को क्लाउड और इंडस्ट्री-स्टैंडर्ड सर्टिफ़िकेशन तक बढ़ा रहा हूँ।", "l_also": "यह भी सीख रहा हूँ", "ct_h2": "आइए बात करें", "ct_p": "मैं अबू धाबी में व्यक्तिगत रूप से या वीडियो कॉल पर इंटरव्यू के लिए उपलब्ध हूँ और तुरंत जॉइन कर सकता हूँ। मेरा पूरा सीवी नीचे से डाउनलोड करें।", "ct_email": "ईमेल", "ct_cv": "सीवी", "ct_pdf": "PDF डाउनलोड करें", "foot": "© 2026 Suvin V S · सीनियर सिस्टम एडमिनिस्ट्रेटर · डेस्कटॉप सपोर्ट इंजीनियर", "hint": "👋 किसी आइकन पर टैप करें और देखें मैं कैसे ठीक करता हूँ!"}, "ta": {"n_intro": "அறிமுகம்", "n_about": "என்னைப் பற்றி", "n_skills": "திறன்கள்", "n_fix": "என் பணி", "n_proj": "திட்டங்கள்", "n_exp": "அனுபவம்", "n_learn": "கல்வி", "n_contact": "தொடர்பு", "h_tag": "உடனடியாகப் பணியில் சேரத் தயார் · UAE", "h_role": "சீனியர் சிஸ்டம் அட்மினிஸ்ட்ரேட்டர் · டெஸ்க்டாப் சப்போர்ட் இன்ஜினியர் · ஐடி உள்கட்டமைப்பு", "h_lead": "12+ ஆண்டுகளாக வங்கி, அரசு மற்றும் வணிக நிறுவனங்களின் ஐடி அமைப்புகளை Windows Server, Active Directory, Cisco நெட்வொர்க்குகள், Microsoft 365 மற்றும் வன்பொருள் ஆதரவுடன் குறைந்த இடையூறுடன் இயக்கி வருகிறேன்.", "b_touch": "தொடர்பு கொள்ளுங்கள்", "b_cv": "CV பதிவிறக்கு", "b_exp": "அனுபவத்தைப் பார்க்க", "st1": "ஐடி ஆதரவு மற்றும் உள்கட்டமைப்பில் ஆண்டுகள்", "st2": "SBI கிளைகளுக்கு ஆதரவு, திருவனந்தபுரம் பகுதி", "st3": "வங்கி, அரசு, நிறுவனங்களில் பணிப் பொறுப்புகள்", "st4": "முதல் ஐடி உள்கட்டமைப்பில்", "i_h2": "30 வினாடிகளில் என் சுயவிவரம்", "a_eye": "என்னைப் பற்றி", "a_h2": "சர்வர் அறையிலிருந்து பயனர் வரை நம்பகமான ஐடி", "a_p1": "நான் இந்தியாவின் கேரளாவைச் சேர்ந்த ஐடி உள்கட்டமைப்பு நிபுணர். வங்கி, பொதுத்துறை மற்றும் நிறுவனச் சூழல்களில் சிஸ்டம் நிர்வாகம், நெட்வொர்க் ஆதரவு மற்றும் பயனர் ஐடி ஆதரவில் 12 ஆண்டுகளுக்கும் மேலான அனுபவம் உள்ளது.", "a_p2": "எனது சமீபத்திய பணியில், திருவனந்தபுரம் பகுதியிலுள்ள ஸ்டேட் பேங்க் ஆஃப் இந்தியா கிளைகளின் ஐடி செயல்பாடுகளுக்கான தொழில்நுட்ப நிர்வாகியாக இருந்தேன். Active Directory, Group Policy, DNS/DHCP, பேட்ச் புதுப்பிப்புகள், OS நிறுவல், வன்பொருள் பராமரிப்பு, பேக்கப் மற்றும் மீட்டெடுப்பு ஆகியவற்றை நேரடியாகவும் தொலைவிலிருந்தும் கையாண்டேன்.", "a_p3": "தற்போது AWS மற்றும் CompTIA A+ படிப்புகள் மூலம் கிளவுட் உள்கட்டமைப்பை நோக்கி வளர்ந்து வருகிறேன். UAE-யில் சிஸ்டம் அட்மினிஸ்ட்ரேட்டர், டெஸ்க்டாப் சப்போர்ட் இன்ஜினியர், ஐடி சப்போர்ட் இன்ஜினியர் அல்லது நெட்வொர்க் அட்மினிஸ்ட்ரேட்டர் பணியைத் தேடுகிறேன்.", "f_based": "இருப்பிடம்", "f_based_v": "கேரளா, இந்தியா → அபுதாபி, UAE", "f_avail": "கிடைக்கும் நிலை", "f_avail_v": "உடனடியாகச் சேரலாம்", "f_roles": "எதிர்பார்க்கும் பணிகள்", "f_roles_v": "சிஸ்டம் அட்மின் · டெஸ்க்டாப் சப்போர்ட் · ஐடி சப்போர்ட் · நெட்வொர்க் அட்மின்", "f_ind": "துறைகள்", "f_ind_v": "வங்கி · அரசு · நிறுவன ERP", "f_lang": "மொழிகள்", "f_lang_v": "மலையாளம் (தாய்மொழி) · ஆங்கிலம் · இந்தி · தமிழ்", "f_nat": "தேசியம்", "f_nat_v": "இந்தியர்", "sk_h2": "நான் பணிபுரியும் தொழில்நுட்பங்கள்", "sk1": "சிஸ்டம் நிர்வாகம்", "sk2": "நெட்வொர்க்கிங்", "sk3": "வன்பொருள் மற்றும் பயனர் ஆதரவு", "sk4": "கிளவுட் மற்றும் உற்பத்தித்திறன்", "sk5": "தரவு மற்றும் மீட்பு", "sk6": "சேவை மற்றும் ஆவணப்படுத்தல்", "fx_h2": "ஒரு சிக்கலைத் தட்டுங்கள். அது சரிசெய்யப்படுவதைப் பாருங்கள்.", "fx_p": "வங்கி, அரசு மற்றும் வணிக ஐடியில் எனது 12+ ஆண்டு அனுபவத்திலிருந்து பத்து அன்றாட ஐடி மற்றும் டெஸ்க்டாப் சப்போர்ட் சிக்கல்கள். ஒவ்வொன்றும் படிப்படியாகக் காட்டப்படுகிறது: சிக்கல், கண்டறிதல், தீர்வு, சரிபார்ப்பு. (அனிமேஷன்கள் ஆங்கிலத்தில் உள்ளன.)", "pj_eye": "நடைமுறை லேப்கள்", "pj_h2": "GitHub-இல் உள்ள திட்டங்கள்", "pj_p": "குறியீடு, உருவாக்க வழிகாட்டிகள் மற்றும் எனது சொந்த ஸ்கிரீன்ஷாட்களுடன் கூடிய ஹோம்-லேப் திட்டங்கள். ஒவ்வொரு அட்டையும் GitHub-இல் திட்டத்தைத் திறக்கும்.", "pj1": "சிஸ்டம் நிலை அறிக்கைகள், இணைப்புச் சோதனைகள், Robocopy பேக்கப், மென்பொருள் பட்டியல், செயலற்ற AD பயனர் சுத்தம் — என் சொந்த கணினியில் சோதிக்கப்பட்டது.", "pj2": "5 VLAN-கள், இன்டர்-VLAN ரூட்டிங், DHCP, NAT, ACL மூலம் விருந்தினர் நெட்வொர்க் பிரிப்பு, SSH மட்டும் நிர்வாகம், போர்ட் பாதுகாப்பு. 8 சோதனைகளில் 7 வெற்றி.", "pj3": "Windows Server 2025 டொமைன் கன்ட்ரோலர்: AD DS, DNS, DHCP, 5 துறைகளில் 15 பயனர்கள், Group Policy மற்றும் NTFS கோப்புப் பகிர்வுகள் — PowerShell மூலம் உருவாக்கப்பட்டது.", "pj4": "தனிப்பயன் VPC, குறைந்தபட்ச அனுமதி பாதுகாப்புக் குழு, Session Manager அணுகல், IMDSv2 மற்றும் CloudWatch எச்சரிக்கைக்கான CloudFormation டெம்ப்ளேட்.", "c_done": "முடிந்தது", "c_prog": "நடைபெறுகிறது", "c_dc": "DC உருவாக்கப்பட்டது", "e_h2": "நான் பணியாற்றிய இடங்கள்", "j1a": "திருவனந்தபுரம் பகுதியிலுள்ள SBI கிளைகளுக்கான முதன்மைத் தொழில்நுட்ப நிர்வாகி — வன்பொருள், மென்பொருள், கணினிகள் மற்றும் நெட்வொர்க்.", "j1b": "Active Directory, பயனர் கணக்குகள், டொமைன் சேவைகள், Group Policy மற்றும் DNS நிர்வாகம்.", "j1c": "Windows கணினிகள் நிறுவல், OS நிறுவல், பேட்ச் புதுப்பிப்புகள் மற்றும் ஆன்டிவைரஸ் / பாதுகாப்புப் புதுப்பிப்புகள்.", "j1d": "வங்கிச் செயல்பாடுகளில் இடையூறைக் குறைக்க தொலைநிலை ஆதரவு, சிஸ்டம் மீட்பு மற்றும் தரவு மீட்டெடுப்பு.", "j1e": "பிரிண்டர்கள், ஸ்கேனர்கள் மற்றும் இணைப்புச் சாதனங்களை நிறுவுதல், அமைத்தல், பராமரித்தல். மறுநிறுவலுக்கு முன்னும் பின்னும் பேக்கப் மற்றும் மீட்டெடுப்பு.", "j2a": "நிறுவன ERP நிறுவல்கள்: நிறுவுதல், அமைத்தல் மற்றும் வாடிக்கையாளருக்கேற்ற தொழில்நுட்ப வடிவமைப்பு.", "j2b": "SQL Server 2008 R2 பேக்கப், மீட்டெடுப்பு மற்றும் கண்காணிப்பு.", "j2c": "வாடிக்கையாளர் நிறுவனங்களுக்கான Microsoft 365 / Office 365 நிர்வாகம், கணக்கு அமைப்பு மற்றும் தொலைநிலை சிக்கல் தீர்வு.", "j2d": "வாடிக்கையாளர்களின் டெஸ்க்டாப், லேப்டாப், பிரிண்டர், ஸ்கேனர்களை நிறுவி பராமரித்தேன்; OS நிறுவல் மற்றும் பேக்கப் மீட்டெடுப்புடன்.", "j3a": "Windows Server சூழல்கள், பயனர் கணக்குகள், Group Policy, Windows Firewall, பாதுகாப்புப் புதுப்பிப்புகள் மற்றும் பேட்ச்களை நிர்வகித்தேன்.", "j3b": "சர்வர் உள்கட்டமைப்பு மற்றும் பயனர்களுக்கு ஆதரவு: டெஸ்க்டாப்கள், பிரிண்டர்கள், ஸ்கேனர்கள், நெட்வொர்க் சாதனங்கள்.", "j3c": "துறை முழுவதுமான வீடியோ கான்ஃபரன்சிங் அமைப்பு மற்றும் தொலைநிலை இணைப்புக்கு ஆதரவு.", "j3d": "ஆவணங்கள், தொழில்நுட்பப் பதிவுகள், வன்பொருள்/மென்பொருள் பட்டியல்கள் மற்றும் மீட்பு/மாற்று நடைமுறைகளைப் பராமரித்தேன்.", "j4a": "வாடிக்கையாளர்களுக்கு சர்வர்கள், டெஸ்க்டாப்கள், லேப்டாப்கள், பிரிண்டர்கள் மற்றும் வணிக மென்பொருட்களை நிறுவி பராமரித்தேன்.", "j4b": "LAN, நெட்வொர்க் மற்றும் IoT உள்கட்டமைப்பைக் கண்காணித்து சிக்கல்களைத் தீர்த்தேன்; விற்பனையாளர் ஆதரவை ஒருங்கிணைத்தேன்.", "j4c": "தொலைநிலை மற்றும் நேரடி ஆதரவு, OS நிறுவல், மென்பொருள் மேம்படுத்தல், வன்பொருள் சிக்கல் தீர்வு.", "j5a": "Cisco ரவுட்டர்கள் மற்றும் ஸ்விட்ச்களைப் பயன்படுத்தி நிறுவன LAN உள்கட்டமைப்பை அமைத்து பராமரித்தேன்.", "j5b": "நெட்வொர்க் கண்காணிப்பு, சிக்கல் தீர்வு, ரூட்டிங் சிக்கல்களைக் கண்டறிதல் மற்றும் இணைப்பு ஆதரவு.", "j5c": "சர்வர்கள், டெஸ்க்டாப்கள் மற்றும் வணிக மென்பொருட்களை நிறுவி பராமரித்தேன். Microsoft 365 ஆதரவு.", "l_eye": "கல்வி மற்றும் கற்றல்", "l_h2": "அடித்தளத்தின் மீது தொடர்ந்து கட்டமைத்தல்", "l_btech": "பி.டெக், மின்னணுவியல் மற்றும் தகவல்தொடர்பு பொறியியல்", "l_dip": "டிப்ளோமா, மின்னணுவியல் மற்றும் தகவல்தொடர்பு பொறியியல்", "l_att": "சான்றொப்பமிட்ட சான்றிதழ்", "l_certs": "நடைபெறும் சான்றிதழ்கள்", "l_ext": "எனது ஆன்-பிரமிசஸ் அனுபவத்தை கிளவுட் மற்றும் தொழில்துறைச் சான்றிதழ்களுக்கு விரிவுபடுத்துகிறேன்.", "l_also": "மேலும் கற்கிறேன்", "ct_h2": "பேசலாம்", "ct_p": "அபுதாபியில் நேரிலோ வீடியோ அழைப்பிலோ நேர்காணலுக்குத் தயார்; உடனடியாகப் பணியில் சேர முடியும். எனது முழு CV-ஐ கீழே பதிவிறக்கலாம்.", "ct_email": "மின்னஞ்சல்", "ct_cv": "CV", "ct_pdf": "PDF பதிவிறக்கு", "foot": "© 2026 Suvin V S · சீனியர் சிஸ்டம் அட்மினிஸ்ட்ரேட்டர் · டெஸ்க்டாப் சப்போர்ட் இன்ஜினியர்", "hint": "👋 ஒரு ஐகானைத் தட்டி நான் எப்படிச் சரிசெய்கிறேன் என்று பாருங்கள்!"}, "ml": {"n_intro": "ആമുഖം", "n_about": "എന്നെക്കുറിച്ച്", "n_skills": "കഴിവുകൾ", "n_fix": "എന്റെ ജോലി", "n_proj": "പ്രോജക്ടുകൾ", "n_exp": "പരിചയം", "n_learn": "പഠനം", "n_contact": "ബന്ധപ്പെടുക", "h_tag": "ഉടൻ ജോലിയിൽ ചേരാൻ തയ്യാർ · UAE", "h_role": "സീനിയർ സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്റർ · ഡെസ്ക്ടോപ്പ് സപ്പോർട്ട് എഞ്ചിനീയർ · ഐടി ഇൻഫ്രാസ്ട്രക്ചർ", "h_lead": "12+ വർഷമായി ബാങ്കിംഗ്, സർക്കാർ, ബിസിനസ് സ്ഥാപനങ്ങളുടെ ഐടി സംവിധാനങ്ങൾ Windows Server, Active Directory, Cisco നെറ്റ്‌വർക്കുകൾ, Microsoft 365, ഹാർഡ്‌വെയർ സപ്പോർട്ട് എന്നിവയിലൂടെ കുറഞ്ഞ തടസ്സത്തോടെ പ്രവർത്തിപ്പിക്കുന്നു.", "b_touch": "ബന്ധപ്പെടുക", "b_cv": "സിവി ഡൗൺലോഡ്", "b_exp": "പരിചയം കാണുക", "st1": "ഐടി സപ്പോർട്ടിലും ഇൻഫ്രാസ്ട്രക്ചറിലും വർഷങ്ങൾ", "st2": "SBI ശാഖകൾക്ക് പിന്തുണ, തിരുവനന്തപുരം മേഖല", "st3": "ബാങ്കിംഗ്, സർക്കാർ, എന്റർപ്രൈസ് മേഖലകളിലെ റോളുകൾ", "st4": "മുതൽ ഐടി ഇൻഫ്രാസ്ട്രക്ചറിൽ", "i_h2": "30 സെക്കൻഡിൽ എന്റെ പ്രൊഫൈൽ", "a_eye": "എന്നെക്കുറിച്ച്", "a_h2": "സെർവർ റൂം മുതൽ ഉപയോക്താവ് വരെ വിശ്വസനീയമായ ഐടി", "a_p1": "ഞാൻ കേരളത്തിൽ നിന്നുള്ള ഒരു ഐടി ഇൻഫ്രാസ്ട്രക്ചർ പ്രൊഫഷണലാണ്. ബാങ്കിംഗ്, പൊതുമേഖല, എന്റർപ്രൈസ് സ്ഥാപനങ്ങളിൽ സിസ്റ്റം അഡ്മിനിസ്ട്രേഷൻ, നെറ്റ്‌വർക്ക് സപ്പോർട്ട്, എൻഡ്-യൂസർ ഐടി എന്നിവയിൽ 12 വർഷത്തിലേറെ പരിചയമുണ്ട്.", "a_p2": "എന്റെ ഏറ്റവും പുതിയ ജോലിയിൽ, തിരുവനന്തപുരം മേഖലയിലെ സ്റ്റേറ്റ് ബാങ്ക് ഓഫ് ഇന്ത്യ ശാഖകളുടെ ഐടി പ്രവർത്തനങ്ങളുടെ ടെക്നിക്കൽ അഡ്മിനിസ്ട്രേറ്റർ ആയിരുന്നു. Active Directory, Group Policy, DNS/DHCP, പാച്ചിംഗ്, OS ഇൻസ്റ്റാളേഷൻ, ഹാർഡ്‌വെയർ സർവീസിംഗ്, ബാക്കപ്പ് & റിസ്റ്റോർ എന്നിവ നേരിട്ടും റിമോട്ടായും കൈകാര്യം ചെയ്തു.", "a_p3": "ഇപ്പോൾ AWS, CompTIA A+ പഠനത്തിലൂടെ ക്ലൗഡ് ഇൻഫ്രാസ്ട്രക്ചറിലേക്ക് വളരുകയാണ്. UAE-ൽ സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്റർ, ഡെസ്ക്ടോപ്പ് സപ്പോർട്ട് എഞ്ചിനീയർ, ഐടി സപ്പോർട്ട് എഞ്ചിനീയർ അല്ലെങ്കിൽ നെറ്റ്‌വർക്ക് അഡ്മിനിസ്ട്രേറ്റർ ജോലി തേടുന്നു.", "f_based": "താമസം", "f_based_v": "കേരളം, ഇന്ത്യ → അബുദാബി, UAE", "f_avail": "ലഭ്യത", "f_avail_v": "ഉടൻ ചേരാം", "f_roles": "ലക്ഷ്യമിടുന്ന റോളുകൾ", "f_roles_v": "സിസ്റ്റം അഡ്മിൻ · ഡെസ്ക്ടോപ്പ് സപ്പോർട്ട് · ഐടി സപ്പോർട്ട് · നെറ്റ്‌വർക്ക് അഡ്മിൻ", "f_ind": "മേഖലകൾ", "f_ind_v": "ബാങ്കിംഗ് · സർക്കാർ · എന്റർപ്രൈസ് ERP", "f_lang": "ഭാഷകൾ", "f_lang_v": "മലയാളം (മാതൃഭാഷ) · ഇംഗ്ലീഷ് · ഹിന്ദി · തമിഴ്", "f_nat": "പൗരത്വം", "f_nat_v": "ഇന്ത്യൻ", "sk_h2": "ഞാൻ ജോലി ചെയ്യുന്ന മേഖലകൾ", "sk1": "സിസ്റ്റം അഡ്മിനിസ്ട്രേഷൻ", "sk2": "നെറ്റ്‌വർക്കിംഗ്", "sk3": "ഹാർഡ്‌വെയർ & യൂസർ സപ്പോർട്ട്", "sk4": "ക്ലൗഡ് & പ്രൊഡക്ടിവിറ്റി", "sk5": "ഡാറ്റ & റിക്കവറി", "sk6": "സർവീസ് & ഡോക്യുമെന്റേഷൻ", "fx_h2": "ഒരു പ്രശ്നം തിരഞ്ഞെടുക്കൂ. അത് പരിഹരിക്കുന്നത് കാണൂ.", "fx_p": "ബാങ്കിംഗ്, സർക്കാർ, ബിസിനസ് ഐടി രംഗത്തെ എന്റെ 12+ വർഷത്തെ അനുഭവത്തിൽ നിന്നുള്ള പത്ത് സാധാരണ ഐടി, ഡെസ്ക്ടോപ്പ് സപ്പോർട്ട് പ്രശ്നങ്ങൾ. ഓരോന്നും ഘട്ടം ഘട്ടമായി: പ്രശ്നം, കണ്ടെത്തൽ, പരിഹാരം, പരിശോധന. (ആനിമേഷനുകൾ ഇംഗ്ലീഷിലാണ്.)", "pj_eye": "പ്രായോഗിക ലാബുകൾ", "pj_h2": "GitHub-ലെ പ്രോജക്ടുകൾ", "pj_p": "കോഡ്, ബിൽഡ് ഗൈഡുകൾ, എന്റെ സ്വന്തം സ്ക്രീൻഷോട്ടുകൾ എന്നിവയുള്ള ഹോം-ലാബ് പ്രോജക്ടുകൾ. ഓരോ കാർഡും GitHub-ൽ പ്രോജക്ട് തുറക്കും.", "pj1": "ഹെൽത്ത് റിപ്പോർട്ടുകൾ, കണക്റ്റിവിറ്റി പരിശോധന, Robocopy ബാക്കപ്പ്, സോഫ്റ്റ്‌വെയർ ഇൻവെന്ററി, നിഷ്ക്രിയ AD യൂസർ ക്ലീൻ-അപ്പ് — എന്റെ സ്വന്തം പിസിയിൽ പരീക്ഷിച്ചത്.", "pj2": "5 VLAN-കൾ, ഇന്റർ-VLAN റൂട്ടിംഗ്, DHCP, NAT, ACL ഉപയോഗിച്ച് ഗസ്റ്റ് ഐസൊലേഷൻ, SSH മാത്രമുള്ള മാനേജ്മെന്റ്, പോർട്ട് സെക്യൂരിറ്റി. 8-ൽ 7 ടെസ്റ്റുകൾ വിജയിച്ചു.", "pj3": "Windows Server 2025 ഡൊമെയ്ൻ കൺട്രോളർ: AD DS, DNS, DHCP, 5 വകുപ്പുകളിലായി 15 യൂസർമാർ, Group Policy, NTFS ഫയൽ ഷെയറുകൾ — PowerShell ഉപയോഗിച്ച് നിർമ്മിച്ചത്.", "pj4": "കസ്റ്റം VPC, ഏറ്റവും കുറഞ്ഞ അനുമതിയുള്ള സെക്യൂരിറ്റി ഗ്രൂപ്പ്, Session Manager ആക്സസ്, IMDSv2, CloudWatch അലാറം എന്നിവയ്ക്കുള്ള CloudFormation ടെംപ്ലേറ്റ്.", "c_done": "പൂർത്തിയായി", "c_prog": "പുരോഗമിക്കുന്നു", "c_dc": "DC തയ്യാർ", "e_h2": "ഞാൻ ജോലി ചെയ്ത സ്ഥാപനങ്ങൾ", "j1a": "തിരുവനന്തപുരം മേഖലയിലെ SBI ശാഖകളുടെ പ്രധാന ടെക്നിക്കൽ അഡ്മിനിസ്ട്രേറ്റർ — ഹാർഡ്‌വെയർ, സോഫ്റ്റ്‌വെയർ, എൻഡ്‌പോയിന്റുകൾ, നെറ്റ്‌വർക്ക്.", "j1b": "Active Directory, യൂസർ അക്കൗണ്ടുകൾ, ഡൊമെയ്ൻ സേവനങ്ങൾ, Group Policy, DNS എന്നിവയുടെ നിർവ്വഹണം.", "j1c": "Windows എൻഡ്‌പോയിന്റ് വിന്യാസം, OS ഇൻസ്റ്റാളേഷൻ, പാച്ചിംഗ്, ആന്റിവൈറസ് / എൻഡ്‌പോയിന്റ് സെക്യൂരിറ്റി അപ്ഡേറ്റുകൾ.", "j1d": "ബാങ്കിംഗ് പ്രവർത്തനങ്ങളിലെ തടസ്സം കുറയ്ക്കാൻ റിമോട്ട് സപ്പോർട്ട്, സിസ്റ്റം റിക്കവറി, ഡാറ്റ വീണ്ടെടുക്കൽ.", "j1e": "പ്രിന്ററുകൾ, സ്കാനറുകൾ, മറ്റ് ഉപകരണങ്ങൾ എന്നിവയുടെ ഇൻസ്റ്റാളേഷൻ, കോൺഫിഗറേഷൻ, സർവീസിംഗ്. റീബിൽഡിന് മുമ്പും ശേഷവും ബാക്കപ്പ് & റിസ്റ്റോർ.", "j2a": "എന്റർപ്രൈസ് ERP വിന്യാസം: ഇൻസ്റ്റാളേഷൻ, കോൺഫിഗറേഷൻ, ക്ലയന്റിന് അനുസരിച്ചുള്ള ടെക്നിക്കൽ മാപ്പിംഗ്.", "j2b": "SQL Server 2008 R2 ബാക്കപ്പ്, റിസ്റ്റോർ, മോണിറ്ററിംഗ്.", "j2c": "ക്ലയന്റ് സ്ഥാപനങ്ങൾക്കായി Microsoft 365 / Office 365 അഡ്മിനിസ്ട്രേഷൻ, പ്രൊവിഷനിംഗ്, റിമോട്ട് ട്രബിൾഷൂട്ടിംഗ്.", "j2d": "ക്ലയന്റുകളുടെ ഡെസ്ക്ടോപ്പുകൾ, ലാപ്ടോപ്പുകൾ, പ്രിന്ററുകൾ, സ്കാനറുകൾ എന്നിവ ഇൻസ്റ്റാൾ ചെയ്ത് സർവീസ് ചെയ്തു; OS ഇൻസ്റ്റാളേഷനും ബാക്കപ്പ് & റിസ്റ്റോറും ഉൾപ്പെടെ.", "j3a": "Windows Server സംവിധാനങ്ങൾ, യൂസർ അക്കൗണ്ടുകൾ, Group Policy, Windows Firewall, സെക്യൂരിറ്റി അപ്ഡേറ്റുകൾ, പാച്ചിംഗ് എന്നിവ കൈകാര്യം ചെയ്തു.", "j3b": "സെർവർ ഇൻഫ്രാസ്ട്രക്ചറിനും ഉപയോക്താക്കൾക്കും പിന്തുണ: ഡെസ്ക്ടോപ്പുകൾ, പ്രിന്ററുകൾ, സ്കാനറുകൾ, നെറ്റ്‌വർക്ക് ഉപകരണങ്ങൾ.", "j3c": "വകുപ്പ് മുഴുവനുമുള്ള വീഡിയോ കോൺഫറൻസിംഗ് സംവിധാനത്തിനും റിമോട്ട് കണക്റ്റിവിറ്റിക്കും പിന്തുണ.", "j3d": "ഡോക്യുമെന്റേഷൻ, ടെക്നിക്കൽ ലോഗുകൾ, ഹാർഡ്‌വെയർ/സോഫ്റ്റ്‌വെയർ ഇൻവെന്ററി, റിക്കവറി/ഫെയിലോവർ നടപടിക്രമങ്ങൾ എന്നിവ പരിപാലിച്ചു.", "j4a": "ക്ലയന്റുകൾക്കായി സെർവറുകൾ, ഡെസ്ക്ടോപ്പുകൾ, ലാപ്ടോപ്പുകൾ, പ്രിന്ററുകൾ, ബിസിനസ് സോഫ്റ്റ്‌വെയർ എന്നിവ ഇൻസ്റ്റാൾ ചെയ്ത് പരിപാലിച്ചു.", "j4b": "LAN, നെറ്റ്‌വർക്ക്, IoT ഇൻഫ്രാസ്ട്രക്ചർ എന്നിവ നിരീക്ഷിക്കുകയും പ്രശ്നങ്ങൾ പരിഹരിക്കുകയും വെണ്ടർ സപ്പോർട്ട് ഏകോപിപ്പിക്കുകയും ചെയ്തു.", "j4c": "റിമോട്ട്, ഓൺസൈറ്റ് സപ്പോർട്ട്, OS ഇൻസ്റ്റാളേഷൻ, സോഫ്റ്റ്‌വെയർ അപ്ഗ്രേഡുകൾ, ഹാർഡ്‌വെയർ ട്രബിൾഷൂട്ടിംഗ്.", "j5a": "Cisco റൗട്ടറുകളും സ്വിച്ചുകളും ഉപയോഗിച്ച് കോർപ്പറേറ്റ് LAN ഇൻഫ്രാസ്ട്രക്ചർ കോൺഫിഗർ ചെയ്ത് പരിപാലിച്ചു.", "j5b": "നെറ്റ്‌വർക്ക് മോണിറ്ററിംഗ്, ട്രബിൾഷൂട്ടിംഗ്, റൂട്ടിംഗ് പ്രശ്നങ്ങൾ കണ്ടെത്തൽ, കണക്റ്റിവിറ്റി സപ്പോർട്ട്.", "j5c": "സെർവറുകൾ, ഡെസ്ക്ടോപ്പുകൾ, ബിസിനസ് സോഫ്റ്റ്‌വെയർ എന്നിവ ഇൻസ്റ്റാൾ ചെയ്ത് പരിപാലിച്ചു. Microsoft 365 സപ്പോർട്ട്.", "l_eye": "വിദ്യാഭ്യാസവും പഠനവും", "l_h2": "അടിത്തറയിൽ നിന്ന് തുടർച്ചയായ വളർച്ച", "l_btech": "ബി.ടെക്, ഇലക്ട്രോണിക്സ് & കമ്മ്യൂണിക്കേഷൻ എഞ്ചിനീയറിംഗ്", "l_dip": "ഡിപ്ലോമ, ഇലക്ട്രോണിക്സ് & കമ്മ്യൂണിക്കേഷൻ എഞ്ചിനീയറിംഗ്", "l_att": "സാക്ഷ്യപ്പെടുത്തിയ സർട്ടിഫിക്കറ്റ്", "l_certs": "പുരോഗമിക്കുന്ന സർട്ടിഫിക്കേഷനുകൾ", "l_ext": "എന്റെ ഓൺ-പ്രിമൈസസ് അനുഭവം ക്ലൗഡിലേക്കും ഇൻഡസ്ട്രി സർട്ടിഫിക്കേഷനുകളിലേക്കും വിപുലീകരിക്കുന്നു.", "l_also": "കൂടാതെ പഠിക്കുന്നത്", "ct_h2": "നമുക്ക് സംസാരിക്കാം", "ct_p": "അബുദാബിയിൽ നേരിട്ടോ വീഡിയോ കോളിലൂടെയോ ഇന്റർവ്യൂവിന് ഞാൻ തയ്യാറാണ്, ഉടൻ ജോലിയിൽ ചേരാം. എന്റെ പൂർണ്ണ സിവി താഴെ ഡൗൺലോഡ് ചെയ്യാം.", "ct_email": "ഇമെയിൽ", "ct_cv": "സിവി", "ct_pdf": "PDF ഡൗൺലോഡ്", "foot": "© 2026 Suvin V S · സീനിയർ സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്റർ · ഡെസ്ക്ടോപ്പ് സപ്പോർട്ട് എഞ്ചിനീയർ", "hint": "👋 ഒരു ഐക്കൺ തൊട്ട് ഞാൻ എങ്ങനെ പരിഹരിക്കുന്നു എന്ന് കാണൂ!"}};
+  var FONTS = { ar: 'Noto+Sans+Arabic', hi: 'Noto+Sans+Devanagari', ta: 'Noto+Sans+Tamil', ml: 'Noto+Sans+Malayalam' };
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-i18n]'));
+  els.forEach(function (el) { el.setAttribute('data-en', el.innerHTML); });
+  var sel = document.getElementById('langSel');
+  function loadFont(l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var link = document.createElement('link');
+    link.id = 'font-' + l; link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + ':wght@400;600;700&display=swap';
+    document.head.appendChild(link);
+  }
+  function setLang(l) {
+    if (l !== 'en' && !T[l]) l = 'en';
+    var root = document.documentElement;
+    root.lang = l; root.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    loadFont(l);
+    els.forEach(function (el) {
+      var t = l === 'en' ? null : T[l][el.getAttribute('data-i18n')];
+      el.innerHTML = t || el.getAttribute('data-en');
+    });
+    sel.value = l;
+    try { localStorage.setItem('suvin-lang', l); } catch (e) {}
+  }
+  sel.addEventListener('change', function () { setLang(sel.value); });
+  var start = 'en';
+  try {
+    var q = (location.search.match(/[?&]lang=([a-z]{2})/) || [])[1];
+    start = q || localStorage.getItem('suvin-lang') || 'en';
+  } catch (e) {}
+  if (start !== 'en') setLang(start);
+})();
+</script>
 </body>
 </html>
